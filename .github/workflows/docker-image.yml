@@ -9,7 +9,7 @@ steps:
 uses: docker/login-action@v1
 with:
 registry: ghcr.io
-username: rjmcmillan34
+username: rmcmillan34
 password: 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
 - name: Build Bandito image
       run: 
