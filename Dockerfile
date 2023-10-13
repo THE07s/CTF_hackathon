@@ -1,11 +1,13 @@
 FROM alpine:3
 MAINTAINER https://github.com/rmcmillan34
 
-# Install Bash
-RUN apk add --no-cache bash
+# Install Bash and cleanup
+RUN apk update && \
+  apk add --no-cache bash && \
+  rm -rf /var/cache/apk/*
 
 # Install OpenSSH and cleanup
-RUN apk add --update --no-cache openssh
+RUN apk add --no-cache openssh
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config \
   rm -rf /var/cache/apk/*
 
