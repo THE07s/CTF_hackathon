@@ -36,11 +36,5 @@ RUN sed -i 's/#Port 2222/Port 2222/' /etc/ssh/sshd_config
 EXPOSE 2222
 
 
-# Add Bandito0 User
-RUN adduser -h /home/bandito0 -s /bin/bash -D bandito0
-RUN echo -n 'bandito0:bandito0' | chpasswd
-
-
-
 
 
