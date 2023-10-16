@@ -1,0 +1,40 @@
+FROM arm64v8/alpine
+MAINTAINER https://github.com/rmcmillan34
+
+# Install Bash and cleanup
+RUN apk update && \
+  apk add --no-cache bash && \
+  rm -rf /var/cache/apk/*
+
+# Install OpenSSH and cleanup
+RUN apk add --no-cache openssh
+RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
+  rm -rf /var/cache/apk/*
+
+# Configure the root user password
+RUN echo 'root:B4nd1t0' | chpasswd
+
+# Create bandito users for each level
+RUN for i in $(seq 0 34); do \
+        adduser -h "/home/bandito$i" -s /bin/bash -D "bandito$i" && \
+        echo "bandito$i:bandito$i" | chpasswd; \
+    done
+
+# Configure SSH for root user for administration purposes (Port 22)
+RUN sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+EXPOSE 22
+
+# Configure SSH for all Bandito levels to access and play the game (Port 2222)
+RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
+RUN echo 'AllowUsers bandito0 bandito1 bandito2 bandito3 bandito4 bandito5 bandito6 \
+  bandito7 bandito8 bandito9 bandito10 bandito11 bandito12 bandito13 bandito14 \
+  bandito15 bandito16 bandito17 bandito18 bandito19 bandito20 bandito21 bandito22 \
+  bandito23 bandito24 bandito25 bandito26 bandito27 bandito28 bandito29 bandito30 \
+  bandito31 bandito32 bandito33 bandito34' >> /etc/ssh/sshd_config
+RUN sed -i 's/#Port 2222/Port 2222/' /etc/ssh/sshd_config
+EXPOSE 2222
+
+
+
+
