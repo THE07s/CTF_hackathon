@@ -24,6 +24,6 @@ jobs:
       - name: Build and Push the image (ARM64)
         run: |
           docker login --username rmcmillan34 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/rmcmillan34/bandito:latest-arm64
-          docker push ghcr.io/rmcmillan34/bandito:latest-arm64
+          docker build . --file Dockerfile-arm64v8 --tag ghcr.io/rmcmillan34/bandito:latest-arm64v8
+          docker push ghcr.io/rmcmillan34/bandito:latest-arm64v8
           
