@@ -14,7 +14,7 @@ RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
 # Configure the root user password
 RUN echo 'root:B4nd1t0' | chpasswd
 # Change default shell to bash
-RUN sed -i 's|SHELL=\/bin\/sh|SHELL=\/bin\/bash' /etc/default/useradd
+RUN sed -i 's|SHELL=\/bin\/sh|SHELL=\/bin\/bash|' /etc/default/useradd
 RUN chsh -s /bin/bash deploy
 
 # Create bandito users for each level
