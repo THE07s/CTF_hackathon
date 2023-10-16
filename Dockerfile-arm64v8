@@ -35,6 +35,7 @@ RUN echo 'AllowUsers bandito0 bandito1 bandito2 bandito3 bandito4 bandito5 bandi
 RUN sed -i 's/#Port 2222/Port 2222/' /etc/ssh/sshd_config
 EXPOSE 2222
 
+CMD ["/usr/sbin/sshd", "-D"]
 
 
 
