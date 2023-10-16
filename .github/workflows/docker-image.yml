@@ -4,13 +4,25 @@ on:
   push
 
 jobs:
-  publish-bandito:
+  publish-bandito-amd64:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build and Push the image
+      
+      - name: Build and Push the image (AMD64)
         run: |
           docker login --username rmcmillan34 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/rmcmillan34/bandito:latest
+          docker build . --tag ghcr.io/rmcmillan34/bandito:latest-amd64
           docker push ghcr.io/rmcmillan34/bandito:latest
+ 
+  publish-bandito-arm64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Build and Push the image (ARM64)
+        run: |
+          docker build . --tag ghcr.io/rmcmillan34/bandito:latest-arm64
+          docker push ghcr.io/rmcmillan34/bandito:latest-arm64
           
