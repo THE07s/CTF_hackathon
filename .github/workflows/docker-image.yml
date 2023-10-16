@@ -12,7 +12,7 @@ jobs:
       - name: Build and Push the image (AMD64)
         run: |
           docker login --username rmcmillan34 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/rmcmillan34/bandito:latest-amd64
+          docker build . --file Dockerfile-amd64 --tag ghcr.io/rmcmillan34/bandito:latest-amd64
           docker push ghcr.io/rmcmillan34/bandito:latest-amd64
  
   publish-bandito-arm64:
