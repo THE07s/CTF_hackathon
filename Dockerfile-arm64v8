@@ -13,6 +13,9 @@ RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
 
 # Configure the root user password
 RUN echo 'root:B4nd1t0' | chpasswd
+# Change default shell to bash
+RUN sed -i 's/SHELL=/bin/sh/SHELL=/bin/bash' /etc/default/useradd
+RUN chsh -s /bin/bash deploy
 
 # Create bandito users for each level
 RUN for i in $(seq 0 34); do \
@@ -32,7 +35,7 @@ RUN echo 'AllowUsers bandito0 bandito1 bandito2 bandito3 bandito4 bandito5 bandi
   bandito15 bandito16 bandito17 bandito18 bandito19 bandito20 bandito21 bandito22 \
   bandito23 bandito24 bandito25 bandito26 bandito27 bandito28 bandito29 bandito30 \
   bandito31 bandito32 bandito33 bandito34' >> /etc/ssh/sshd_config
-RUN sed -i 's/#Port 2222/Port 2222/' /etc/ssh/sshd_config
+RUN echo 'Port 2222' >> /etc/ssh/sshd_config
 EXPOSE 2222
 
 # Generate SSH keys
