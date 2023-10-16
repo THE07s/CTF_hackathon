@@ -15,8 +15,8 @@ RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
 RUN echo 'root:B4nd1t0' | chpasswd
 
 # Create bandito users for each level
-RUN for i in {0..34}; do \
-        adduser -h /home/bandito$i -s /bin/bash -D bandito$i && \
+RUN for i in $(seq 0 34); do \
+        adduser -h "/home/bandito$i" -s /bin/bash -D "bandito$i" && \
         echo "bandito$i:bandito$i" | chpasswd; \
     done
 
