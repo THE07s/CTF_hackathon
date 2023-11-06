@@ -22,5 +22,11 @@ On successful login, go to [level 1](level0-1.md) challenge to try advance to th
 ---
 # How to replicate Level 0
 - Create a bandito0 user
-- <img width="650" alt="image" src="https://github.com/rmcmillan34/bandito/assets/16860457/601c90b1-2fda-4f29-a2c0-ab83bd52934d">
+- Configure the home directory as follows:
+<img width="650" alt="image" src="https://github.com/rmcmillan34/bandito/assets/16860457/601c90b1-2fda-4f29-a2c0-ab83bd52934d">
+Bandit1 has readwrite permission as the owner of the readme file, bandit0 group has read only permissions of the readme text file.
+
+In the `/etc/bandit_pass` directory only the owneer has read permissions for the password file. each bandit password text file is owned by that user, meaning you can only read the password for the currently logged on user.
+<img width="650" alt="image" src="https://github.com/rmcmillan34/bandito/assets/16860457/49da99d7-5690-46eb-944c-22020375dbbc">
+
 
