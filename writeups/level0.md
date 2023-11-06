@@ -21,3 +21,6 @@ On successful login, go to [level 1](level0-1.md) challenge to try advance to th
 
 ---
 # How to replicate Level 0
+- Create a bandito0 user
+- <img width="650" alt="image" src="https://github.com/rmcmillan34/bandito/assets/16860457/601c90b1-2fda-4f29-a2c0-ab83bd52934d">
+
