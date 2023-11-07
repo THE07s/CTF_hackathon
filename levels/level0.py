@@ -10,7 +10,7 @@ def main():
     os.system("adduser -h '/home/bandito0' -s /bin/bash -D 'bandito0' && echo 'bandito0:bandito0' | chpasswd" )
 
     #Allow SSH access
-    bandito_lib.add_ssh(LEVEL)
+    bandito_lib.ssh_access(LEVEL)
 
     os.system("cat /etc/ssh/sshd_config")
 
