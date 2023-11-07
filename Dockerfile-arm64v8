@@ -17,10 +17,13 @@ RUN echo 'root:B4nd1t0' | chpasswd
 #RUN sed -i 's/SHELL=\/bin\/sh/SHELL=\/bin\/bash/' /etc/default/useradd
 #RUN chsh -s /bin/bash deploy
 
-# Create bandito users for each level
+# Create bandito users for each level, create password file and set permissions
 RUN for i in $(seq 0 34); do \
         adduser -h "/home/bandito$i" -s /bin/bash -D "bandito$i" && \
         echo "bandito$i:bandito$i" | chpasswd; \
+        touch /etc/bandito_pass/bandito$i
+        chown bandito$i:bandito$i /etc/bandito_pass/bandito$i
+        chmod 400 /etc/bandito_pass/bandito$i
     done
 
 # Configure SSH for root user for administration purposes (Port 22)

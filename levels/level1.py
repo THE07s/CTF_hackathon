@@ -1,9 +1,13 @@
 # Script to create bandito1 user and level environment
 import os
-import hashlib
-from datetime import datetime
+import bandito_lib
 
-# Generate SHA256 hash from todays date YYYYMMDD
-user_pass = hashlib.sha256(bytes(datetime.now().strftime('%Y%m%d%H%M'), 'utf-8')).hexdigest()
+LEVEL = 1
 
-#os.system("useradd -p" +  + )
+def main():
+    # Generate level password
+    user_pass = bandito_lib.get_password_hash()
+    print(user_pass)
+
+if __name__ == '__main__':
+    main()
