@@ -21,3 +21,12 @@ bandit1:NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
 
 ---
 # How to replicate Level 1
+- Create a bandito1 player and password
+- Give bandito1 player access to the SSH game port (2222)
+- Create a readme file with bandito1 password as the contents
+- Configure the home directory as follows:
+  
+<img width="650" alt="image" src="https://github.com/rmcmillan34/bandito/assets/16860457/601c90b1-2fda-4f29-a2c0-ab83bd52934d">
+
+Bandit1 has read-write permission as the owner of the readme file, bandit0 group has read-only permissions for the readme text file.
+
