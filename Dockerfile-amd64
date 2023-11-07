@@ -1,4 +1,4 @@
-FROM arm64v8/alpine
+FROM alpine:latest
 MAINTAINER https://github.com/rmcmillan34
 
 # Install Bash and cleanup

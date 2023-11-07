@@ -12,4 +12,4 @@ def get_password_hash() -> str:
 
 def ssh_access(level):
     '''Add user to the allowed list of SSH users'''
-    os.system(f"sed -i '/^AllowUsers/ s/$/ bandito{level}/' /etc/sshd_config")
+    os.system(f"sed -i '/^AllowUsers/ s/$/ bandito{level}/' /etc/ssh/sshd_config")
