@@ -28,6 +28,7 @@ EXPOSE 22
 
 # Configure SSH for all Bandito levels to access and play the game (Port 2222)
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
+RUN echo 'AllowUsers' >> /etc/ssh/sshd_config
 RUN echo 'Port 2222' >> /etc/ssh/sshd_config
 EXPOSE 2222
 
