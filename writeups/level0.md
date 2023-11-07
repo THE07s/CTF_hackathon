@@ -6,8 +6,8 @@ The goal of this level is for you to log into the game using SSH. The host to wh
 `ssh`
 
 ## Helpful Reading Material
-[Secure Shell (SSH) on Wikipedia](https://en.wikipedia.org/wiki/Secure_Shell)
-[How to use SSH on wikiHow](https://www.wikihow.com/Use-SSH)
+- [Secure Shell (SSH) on Wikipedia](https://en.wikipedia.org/wiki/Secure_Shell)
+- [How to use SSH on wikiHow](https://www.wikihow.com/Use-SSH)
 
 ---
 # Walkthrough
