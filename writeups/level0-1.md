@@ -28,5 +28,5 @@ bandit1:NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
   
 <img width="650" alt="image" src="https://github.com/rmcmillan34/bandito/assets/16860457/601c90b1-2fda-4f29-a2c0-ab83bd52934d">
 
-Bandit1 has read-write permission as the owner of the readme file, bandit0 group has read-only permissions for the readme text file.
+Bandit1 has read-write permission as the owner of the readme file, bandit0 group has read-only permissions for the readme text file. `chmod 640 readme`
 
