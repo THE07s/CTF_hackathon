@@ -9,8 +9,10 @@ def main():
     LEVEL = 1
 
     # Generate level password and create user
-    password = bandito_lib.get_password_hash()
-    bandito_lib.add_user(LEVEL, password)
+    password = bandito_lib.add_user(LEVEL)
+
+    # Give level SSH access
+    bandito_lib.ssh_access(LEVEL)
 
     # Create flag readme file
     os.system("touch /home/bandito0/readme")
@@ -18,8 +20,6 @@ def main():
     os.system("chown bandito1:bandito0 /home/bandito0/readme")
     os.system("chmod 640 /home/bandito0/readme")
 
-    # Create passfile
-    bandito_lib.write_passfile(LEVEL, password)
 
 if __name__ == '__main__':
     main()

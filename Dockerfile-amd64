@@ -30,6 +30,7 @@ EXPOSE 22
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 RUN echo 'AllowUsers' >> /etc/ssh/sshd_config
 RUN echo 'Port 2222' >> /etc/ssh/sshd_config
+RUN echo 'PrintMotd yes' >> /etc/ssh/sshd_config
 EXPOSE 2222
 
 # Generate SSH keys

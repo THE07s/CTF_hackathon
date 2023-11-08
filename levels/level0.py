@@ -13,8 +13,8 @@ def main():
 
     # Allow SSH access
     bandito_lib.ssh_access(LEVEL)
-    # Check correct
-    os.system("cat /etc/ssh/sshd_config")
+
+    # Configure Bash
 
     # Write current level password to file
     bandito_lib.write_passfile(LEVEL, 'bandito0')
