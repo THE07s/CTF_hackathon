@@ -47,3 +47,4 @@ def configure_bashrc(level):
     os.system(f'touch /home/bandito{level}/.bashrc')
     cmd = ['echo', r'PS1="\033[32m\u@\h$ "', '>>', f'/home/bandito{level}/.bashrc']
     subprocess.call(cmd)
+    os.system('source ~/.bashrc')
