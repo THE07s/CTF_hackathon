@@ -23,7 +23,7 @@ RUN echo 'root:B4nd1t0' | chpasswd
 
 # Configure SSH for root user for administration purposes (Port 22)
 RUN sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN echo 'PermitRootLogin yes >> /etc/ssh/sshd_config
 EXPOSE 22
 
 # Configure SSH for all Bandito levels to access and play the game (Port 2222)
