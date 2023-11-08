@@ -15,7 +15,7 @@ def main():
     bandito_lib.write_passfile(LEVEL, 'bandito0')
 
     # Configure Bash
-    bandito_lib.configure_bash(1)
+    bandito_lib.configure_bashrc(1)
 
     # Allow SSH access
     bandito_lib.ssh_access(LEVEL)
