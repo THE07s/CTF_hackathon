@@ -33,7 +33,6 @@ RUN echo 'Port 2222' >> /etc/ssh/sshd_config
 RUN echo 'PrintMotd yes' >> /etc/ssh/sshd_config
 EXPOSE 2222
 
-
 # Configure the SSH Banner /etc/banner (Shown before login)
 RUN touch /etc/banner
 RUN echo "\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████  \
@@ -47,7 +46,7 @@ RUN echo "\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ �
  ░            ░  ░         ░    ░     ░               ░ ░   \
       ░                       ░                             \033[39m \
   This is an OverTheWire Bandit clone made in Alpine Linux \
-     More info: https://github.com/rmcmillan34/bandito' >> /etc/banner
+     More info: https://github.com/rmcmillan34/bandito" >> /etc/banner
 
 
 # Configure the SSH Message of the Day (MotD) /etc/motd (shown after successful login).
@@ -72,7 +71,7 @@ Part of the project Portable Wargame NUC (PWN) series of CTF challenges \
     * USERNAMES are somegame0, somegame1, ...\
     * Most LEVELS are stored in /somegame/.\
     * PASSWORDS for each level are stored in /etc/somegame_pass/.\
-
+\
   Write-access to homedirectories is disabled. It is advised to create a\
   working directory with a hard-to-guess name in /tmp/.  You can use the\
   command \"mktemp -d\" in order to generate a random and hard to guess\
@@ -86,17 +85,16 @@ Part of the project Portable Wargame NUC (PWN) series of CTF challenges \
     * dont''leave exploit-files laying around\
     * don''t annoy other players\
 \
-
-
---[ More information ]--
-
+\
+\
+--[ More information ]--\
+\
   For more information regarding individual wargames, visit\
-  https://github.com/rmcmillan34/bandito\
+  https://github.com/rmcmillan34/bandito \
 \
   If you find a bug please feel free to raise an issue on the github above.\
 \
   Enjoy your stay!" >> /etc/motd
-
 
 # Generate SSH keys
 RUN ssh-keygen -A
