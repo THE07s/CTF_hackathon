@@ -29,7 +29,8 @@ def get_password_hash() -> str:
 def ssh_access(level):
     '''Add user to the allowed list of SSH users'''
     os.system(f"sed -i '/^AllowUsers/ s/$/ bandito{level}/' /etc/ssh/sshd_config")
-    os.system(f"echo '\033[40\033[32; clear' > /home/bandito{level}/.ssh/rc")
+    os.system(f"mkdir /home/bandito{level}/.ssh/")
+    os.system(f"export PS1='\033[32m\033[40m\\u@\\h$; clear' > /home/bandito{level}/.ssh/rc")
 
 
 def write_passfile(level, password):
