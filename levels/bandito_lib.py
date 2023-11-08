@@ -43,7 +43,8 @@ def write_passfile(level, password):
 def configure_bashrc(level):
     '''Configure the .bashrc profile for each user'''
     # Raw string (r'') used for PS1= due to python attempting to read unicode string \u and throwing syntax error
-    ps1 = b'PS1="\033[32m\u@\h$ "'
+    ps1 = "export PS1='\033[32m\u@\h$ '"
     os.system(f'touch /home/bandito{level}/.bashrc')
-    os.system(f'echo "export {ps1}" > /home/bandito{level}/.bashrc; source ~/.bashrc')
-    os.system(f'echo "export {ps1}" > /home/bandito{level}/.bash_profile; source ~/.bashrc')
+    os.system(f'echo "{ps1}" > /home/bandito{level}/.bashrc; source ~/.bashrc')
+    os.system(f'echo "{ps1}" > /home/bandito{level}/.bash_profile; source ~/.bashrc')
+    os.system('clear')
