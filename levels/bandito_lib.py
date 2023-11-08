@@ -38,4 +38,4 @@ def write_passfile(level, password):
 
 def configure_bashrc(level):
     os.system(f'touch /home/bandito{level}/.bashrc')
-    os.system(f'echo PS1="\033[32m\u@\h$ " >> /home/bandito{level}/.bashrc')
+    os.system(f'echo "PS1=\'\033[32m\u@\h$ \'" >> /home/bandito{level}/.bashrc')
