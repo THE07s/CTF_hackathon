@@ -34,7 +34,7 @@ def ssh_access(level):
 def write_passfile(level, password):
     '''Write password to /etc/bantido_pass/LEVEL and restrict permissions'''
     os.system(f'touch /etc/bandito_pass/bandito{level}')
-    os.system(f'echo {password} >> /etc/bandito_pass{level}')
+    os.system(f'echo {password} >> /etc/bandito_pass/bandito{level}')
     os.system(f'chown bandito{level}:bandito{level} /etc/bandito_pass/bandito{level}')
     os.system(f'chmod 400 /etc/bandito_pass/bandito{level}')
 
