@@ -33,6 +33,7 @@ def ssh_access(level):
 
 def write_passfile(level, password):
     '''Write password to /etc/bantido_pass/LEVEL and restrict permissions'''
+    os.system(f'mkdir /etc/bandito_pass')
     os.system(f'touch /etc/bandito_pass/bandito{level}')
     os.system(f'echo {password} >> /etc/bandito_pass/bandito{level}')
     os.system(f'chown bandito{level}:bandito{level} /etc/bandito_pass/bandito{level}')
@@ -42,7 +43,7 @@ def write_passfile(level, password):
 def configure_bashrc(level):
     '''Configure the .bashrc profile for each user'''
     # Raw string (r'') used for PS1= due to python attempting to read unicode string \u and throwing syntax error
-    ps1 = r'PS1="\033[32m\u@\h$ "'
+    ps1 = b'PS1="\033[32m\u@\h$ "'
     os.system(f'touch /home/bandito{level}/.bashrc')
-    os.system(f'echo "export {ps1} > /home/bandito{level}/.bashrc; source ~/.bashrc"')
-    os.system(f'echo "export {ps1} > /home/bandito{level}/.bash_profile; source ~/.bashrc"')
+    os.system(f'echo "export {ps1}" > /home/bandito{level}/.bashrc; source ~/.bashrc')
+    os.system(f'echo "export {ps1}" > /home/bandito{level}/.bash_profile; source ~/.bashrc')
