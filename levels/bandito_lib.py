@@ -44,5 +44,5 @@ def configure_bashrc(level):
     # Raw string (r'') used for PS1= due to python attempting to read unicode string \u and throwing syntax error
     ps1 = r'PS1="\033[32m\u@\h$ "'
     os.system(f'touch /home/bandito{level}/.bashrc')
-    os.system(f'echo {ps1} > /home/bandito{level}/.bashrc; source ~/.bashrc')
-    os.system(f'echo {ps1} > /home/bandito{level}/.bash_profile; source ~/.bashrc')
+    os.system(f'echo "export {ps1} > /home/bandito{level}/.bashrc; source ~/.bashrc"')
+    os.system(f'echo "export {ps1} > /home/bandito{level}/.bash_profile; source ~/.bashrc"')
