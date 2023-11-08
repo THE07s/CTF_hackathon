@@ -49,6 +49,7 @@ RUN echo "\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ �
 
 
 # Configure the SSH Message of the Day (MotD) /etc/motd (shown after successful login).
+## TODO - confifure this into a .sh script in /etc/profile.d/ directory to be run at logon.
 RUN touch /etc/motd
 RUN echo "\033[40m\033[32m     ██▓███        █     █░      ███▄    █\
     ▓██░  ██▒     ▓█░ █ ░█░      ██ ▀█   █\
@@ -93,7 +94,7 @@ Part of the project Portable Wargame NUC (PWN) series of CTF challenges \
 \
   If you find a bug please feel free to raise an issue on the github above.\
 \
-  Enjoy your stay!" >> /etc/motd
+  Enjoy your stay!" > /etc/motd
 
 # Generate SSH keys
 RUN ssh-keygen -A

@@ -35,66 +35,66 @@ EXPOSE 2222
 
 # Configure the SSH Banner /etc/banner (Shown before login)
 RUN touch /etc/banner
-RUN echo "\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████  \n
-▓█████▄ ▒████▄     ██ ▀█   █ ▒██▀ ██▌▓██▒▓  ██▒ ▓▒▒██▒  ██▒ \n
-▒██▒ ▄██▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌▒██▒▒ ▓██░ ▒░▒██░  ██▒ \n
-▒██░█▀  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌░██░░ ▓██▓ ░ ▒██   ██░ \n
-░▓█  ▀█▓ ▓█   ▓██▒▒██░   ▓██░░▒████▓ ░██░  ▒██▒ ░ ░ ████▓▒░ \n
-░▒▓███▀▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒▓  ▒ ░▓    ▒ ░░   ░ ▒░▒░▒░  \n
-▒░▒   ░   ▒   ▒▒ ░░ ░░   ░ ▒░ ░ ▒  ▒  ▒ ░    ░      ░ ▒ ▒░  \n
- ░    ░   ░   ▒      ░   ░ ░  ░ ░  ░  ▒ ░  ░      ░ ░ ░ ▒   \n
- ░            ░  ░         ░    ░     ░               ░ ░   \n
-      ░                       ░                             \033[39m \n
-  This is an OverTheWire Bandit clone made in Alpine Linux \n
+RUN echo "\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████  \n\
+▓█████▄ ▒████▄     ██ ▀█   █ ▒██▀ ██▌▓██▒▓  ██▒ ▓▒▒██▒  ██▒ \n\
+▒██▒ ▄██▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌▒██▒▒ ▓██░ ▒░▒██░  ██▒ \n\
+▒██░█▀  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌░██░░ ▓██▓ ░ ▒██   ██░ \n\
+░▓█  ▀█▓ ▓█   ▓██▒▒██░   ▓██░░▒████▓ ░██░  ▒██▒ ░ ░ ████▓▒░ \n\
+░▒▓███▀▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒▓  ▒ ░▓    ▒ ░░   ░ ▒░▒░▒░  \n\
+▒░▒   ░   ▒   ▒▒ ░░ ░░   ░ ▒░ ░ ▒  ▒  ▒ ░    ░      ░ ▒ ▒░  \n\
+ ░    ░   ░   ▒      ░   ░ ░  ░ ░  ░  ▒ ░  ░      ░ ░ ░ ▒   \n\
+ ░            ░  ░         ░    ░     ░               ░ ░   \n\
+      ░                       ░                             \033[39m \n\
+  This is an OverTheWire Bandit clone made in Alpine Linux \n\
      More info: https://github.com/rmcmillan34/bandito" >> /etc/banner
 
 
 # Configure the SSH Message of the Day (MotD) /etc/motd (shown after successful login).
 RUN touch /etc/motd
-RUN echo "\033[40m\033[32m     ██▓███        █     █░      ███▄    █\n
-    ▓██░  ██▒     ▓█░ █ ░█░      ██ ▀█   █\n
-    ▓██░ ██▓▒     ▒█░ █ ░█      ▓██  ▀█ ██▒\n
-    ▒██▄█▓▒ ▒     ░█░ █ ░█      ▓██▒  ▐▌██▒\n
-    ▒██▒ ░  ░ ██▓ ░░██▒██▓  ██▓ ▒██░   ▓██░ ██▓\n
-    ▒▓▒░ ░  ░ ▒▓▒ ░ ▓░▒ ▒   ▒▓▒ ░ ▒░   ▒ ▒  ▒▓▒\n
-    ░▒ ░      ░▒    ▒ ░ ░   ░▒  ░ ░░   ░ ▒░ ░▒\n
-    ░░        ░     ░   ░   ░      ░   ░ ░  ░\n
-               ░      ░      ░           ░   ░\n
-               ░             ░               ░\033[39m\n
-Part of the project Portable Wargame NUC (PWN) series of CTF challenges \n
-\n
---[ Playing the game ]--\n
-\n
-  This machine might hold several wargames.\n
-  If you are playing "somegame", then:\n
-\n
-    * USERNAMES are somegame0, somegame1, ...\n
-    * Most LEVELS are stored in /somegame/.\n
-    * PASSWORDS for each level are stored in /etc/somegame_pass/.\n
-\n
-  Write-access to homedirectories is disabled. It is advised to create a\n
-  working directory with a hard-to-guess name in /tmp/.  You can use the\n
-  command \"mktemp -d\" in order to generate a random and hard to guess\n
-  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc\n
-  restricted so that users cannot snoop on eachother. Files and directories\n
-  with easily guessable or short names will be periodically deleted! The /tmp\n
-  directory is regularly wiped.\n
-  Please play nice:\n
-\n
-    * don''t leave orphan processes running\n
-    * dont''leave exploit-files laying around\n
-    * don''t annoy other players\n
-\n
-\n
-\n
---[ More information ]--\n
-\n
-  For more information regarding individual wargames, visit\n
-  https://github.com/rmcmillan34/bandito \n
-\n
-  If you find a bug please feel free to raise an issue on the github above.\n
-\n
-  Enjoy your stay!" >> /etc/motd
+RUN echo "\033[40m\033[32m     ██▓███        █     █░      ███▄    █\n\
+    ▓██░  ██▒     ▓█░ █ ░█░      ██ ▀█   █\n\
+    ▓██░ ██▓▒     ▒█░ █ ░█      ▓██  ▀█ ██▒\n\
+    ▒██▄█▓▒ ▒     ░█░ █ ░█      ▓██▒  ▐▌██▒\n\
+    ▒██▒ ░  ░ ██▓ ░░██▒██▓  ██▓ ▒██░   ▓██░ ██▓\n\
+    ▒▓▒░ ░  ░ ▒▓▒ ░ ▓░▒ ▒   ▒▓▒ ░ ▒░   ▒ ▒  ▒▓▒\n\
+    ░▒ ░      ░▒    ▒ ░ ░   ░▒  ░ ░░   ░ ▒░ ░▒\n\
+    ░░        ░     ░   ░   ░      ░   ░ ░  ░\n\
+               ░      ░      ░           ░   ░\n\
+               ░             ░               ░\033[39m\n\
+Part of the project Portable Wargame NUC (PWN) series of CTF challenges \n\
+\n\
+--[ Playing the game ]--\n\
+\n\
+  This machine might hold several wargames.\n\
+  If you are playing "somegame", then:\n\
+\n\
+    * USERNAMES are somegame0, somegame1, ...\n\
+    * Most LEVELS are stored in /somegame/.\n\
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.\n\
+\n\
+  Write-access to homedirectories is disabled. It is advised to create a\n\
+  working directory with a hard-to-guess name in /tmp/.  You can use the\n\
+  command \"mktemp -d\" in order to generate a random and hard to guess\n\
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc\n\
+  restricted so that users cannot snoop on eachother. Files and directories\n\
+  with easily guessable or short names will be periodically deleted! The /tmp\n\
+  directory is regularly wiped.\n\
+  Please play nice:\n\
+\n\
+    * don''t leave orphan processes running\n\
+    * dont''leave exploit-files laying around\n\
+    * don''t annoy other players\n\
+\n\
+\n\
+\n\
+--[ More information ]--\n\
+\n\
+  For more information regarding individual wargames, visit\n\
+  https://github.com/rmcmillan34/bandito \n\
+\n\
+  If you find a bug please feel free to raise an issue on the github above.\n\
+\n\
+  Enjoy your stay!" > /etc/motd
 
 # Generate SSH keys
 RUN ssh-keygen -A
