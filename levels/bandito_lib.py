@@ -31,6 +31,7 @@ def ssh_access(level):
     os.system(f"sed -i '/^AllowUsers/ s/$/ bandito{level}/' /etc/ssh/sshd_config")
     os.system(f"mkdir /home/bandito{level}/.ssh/")
     os.system(f"export PS1='\033[32m\033[40m\\u@\\h$; clear' > /home/bandito{level}/.ssh/rc")
+    os.system(f"echo 'source /home/bandito{level}/.bash_profile' > /home/bandito{level}/.ssh/rc")
 
 
 def write_passfile(level, password):
