@@ -47,6 +47,6 @@ def configure_bashrc(level):
     ps1 = "export PS1='\033[32m\033[40m\\u@\\h$ '"
     os.system(f'touch /home/bandito{level}/.bashrc')
     os.system(f'echo "{ps1}" > /home/bandito{level}/.bashrc; source /home/bandito{level}/.bashrc')
-    os.system(f'echo "{ps1}" > /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bashrc')
+    os.system(f'echo "{ps1}" > /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bashprofile')
     os.system(f'echo "alias ls=\'ls --color=never\'" > /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bash_profile')
     os.system('clear')
