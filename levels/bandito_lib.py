@@ -29,6 +29,7 @@ def get_password_hash() -> str:
 def ssh_access(level):
     '''Add user to the allowed list of SSH users'''
     os.system(f"sed -i '/^AllowUsers/ s/$/ bandito{level}/' /etc/ssh/sshd_config")
+    os.system(f"echo '\033[40\033[32; clear' > /home/bandito{level}/.ssh/rc")
 
 
 def write_passfile(level, password):
@@ -43,8 +44,9 @@ def write_passfile(level, password):
 def configure_bashrc(level):
     '''Configure the .bashrc profile for each user'''
     # Raw string (r'') used for PS1= due to python attempting to read unicode string \u and throwing syntax error
-    ps1 = "export PS1='\033[32m\033[44m\\u@\\h$ '"
+    ps1 = "export PS1='\033[32m\033[40m\\u@\\h$ '"
     os.system(f'touch /home/bandito{level}/.bashrc')
     os.system(f'echo "{ps1}" > /home/bandito{level}/.bashrc; source /home/bandito{level}/.bashrc')
     os.system(f'echo "{ps1}" > /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bashrc')
+    os.system(f'echo "alias ls=\'ls --color=never\'" > /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bash_profile')
     os.system('clear')
