@@ -41,5 +41,5 @@ def configure_bashrc(level):
     '''Configure the .bashrc profile for each user'''
     # subprocess is used here because of the requirement for many levels of quotations in the echo command
     os.system(f'touch /home/bandito{level}/.bashrc')
-    cmd = ['echo', 'PS1="\033[32m\u@\h$ "', '>>', f'/home/bandito{level}/.bashrc']
+    cmd = ['echo', r'PS1="\033[32m\u@\h$ "', '>>', f'/home/bandito{level}/.bashrc']
     subprocess.call(cmd)
