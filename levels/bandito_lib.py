@@ -1,7 +1,6 @@
 # Library to group together common functions for setting up a bandito level environment.
 import os
 import hashlib
-import subprocess
 from datetime import datetime
 
 
@@ -42,9 +41,8 @@ def write_passfile(level, password):
 
 def configure_bashrc(level):
     '''Configure the .bashrc profile for each user'''
-    # subprocess is used here because of the requirement for many levels of quotations in the echo command
     # Raw string (r'') used for PS1= due to python attempting to read unicode string \u and throwing syntax error
+    ps1 = r'PS1="\033[32m\u@\h$ "'
     os.system(f'touch /home/bandito{level}/.bashrc')
-    cmd = ['echo', r'PS1="\033[32m\u@\h$ "', '>>', f'/home/bandito{level}/.bashrc']
-    subprocess.call(cmd)
+    os.system(f'echo {ps1} > /home/bandito{level}/.bashrc')
     os.system('source ~/.bashrc')
