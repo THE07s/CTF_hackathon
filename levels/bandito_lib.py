@@ -47,10 +47,15 @@ def configure_bashrc(level):
     '''Configure the .bashrc profile for each user'''
     # Raw string (r'') used for PS1= due to python attempting to read unicode string \u and throwing syntax error
     ps1 = "export PS1='\033[32m\033[40m\\u@\\h$ '"
-    ps1 = "export PS1='\[\033[40m\]\[\033[01;32m\]\\u@\\h:\[\033[01;34m\]\\w$ \[\033[00;34m\]'"
+    ps1 = "export PS1='\[\033[40m\]\[\033[01;32m\]\\u@\\h:\[\033[01;34m\]\\w$ \[\033[40m\]\[\033[00;32m\]'"
     os.system(f'touch /home/bandito{level}/.bashrc')
     os.system(f'echo "{ps1}" > /home/bandito{level}/.bashrc; source /home/bandito{level}/.bashrc')
     os.system(f'touch /home/bandito{level}/.bash_profile')
     os.system(f'echo "{ps1}" >> /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bash_profile')
     os.system(f'echo "alias ls=\'ls --color=never\'" >> /home/bandito{level}/.bash_profile; source /home/bandito{level}/.bash_profile')
-    os.system('clear')
+
+
+def read_only_home_folder(LEVEL):
+    '''Ensure the home folder for currnet level is set to read only'''
+    # lock down home folder
+    os.system(f'chmod 400 /home/bandito{LEVEL}')

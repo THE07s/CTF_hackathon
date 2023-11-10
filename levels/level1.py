@@ -1,6 +1,7 @@
 # Script to create bandito1 user and level environment
 import os
 import bandito_lib
+import level2
 
 
 
@@ -19,6 +20,13 @@ def main():
     os.system(f"echo '{password}' >> /home/bandito0/readme")
     os.system("chown bandito1:bandito0 /home/bandito0/readme")
     os.system("chmod 640 /home/bandito0/readme")
+
+    # Restrict home folder permisisons
+    bandito_lib.read_only_home_folder(LEVEL)
+
+    # Transition into level 2 configuration
+    level2.main()
+
 
 
 if __name__ == '__main__':

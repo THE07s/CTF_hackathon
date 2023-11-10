@@ -20,6 +20,9 @@ def main():
     # Allow SSH access
     bandito_lib.ssh_access(LEVEL)
 
+    # Restrict home folder permisisons
+    bandito_lib.read_only_home_folder(LEVEL)
+
     # Move on to setting up next level
     level1.main()
 
