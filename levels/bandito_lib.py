@@ -58,4 +58,5 @@ def configure_bashrc(level):
 def read_only_home_folder(LEVEL):
     '''Ensure the home folder for currnet level is set to read only'''
     # lock down home folder
-    os.system(f'chmod 400 /home/bandito{LEVEL}')
+    # Read and Execute permissions required. x allows open folder, r allows to list contents.
+    os.system(f'chmod 500 /home/bandito{LEVEL}')
