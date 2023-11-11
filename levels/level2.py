@@ -2,6 +2,7 @@
 
 import os
 import bandito_lib
+import level3
 
 def main():
     # Set constant for level
@@ -15,6 +16,12 @@ def main():
     os.system(f"echo '{password}' >> /home/bandito1/-")
     os.system("chown bandito2:bandito1 /home/bandito1/-")
     os.system("chmod 640 /home/bandito1/-")
+
+    # Restrict home folder access
+    bandito_lib.read_only_home_folder(LEVEL)
+
+    # Configure level3
+    level3.main()
 
 if __name__ == '__main__':
     main()

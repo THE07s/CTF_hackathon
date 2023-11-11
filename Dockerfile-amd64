@@ -34,6 +34,19 @@ EXPOSE 2222
 
 # Configure welcome banners
 RUN echo '' > /etc/motd
+RUN echo " ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████
+▓█████▄ ▒████▄     ██ ▀█   █ ▒██▀ ██▌▓██▒▓  ██▒ ▓▒▒██▒  ██▒
+▒██▒ ▄██▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌▒██▒▒ ▓██░ ▒░▒██░  ██▒
+▒██░█▀  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌░██░░ ▓██▓ ░ ▒██   ██░
+░▓█  ▀█▓ ▓█   ▓██▒▒██░   ▓██░░▒████▓ ░██░  ▒██▒ ░ ░ ████▓▒░
+░▒▓███▀▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒▓  ▒ ░▓    ▒ ░░   ░ ▒░▒░▒░
+▒░▒   ░   ▒   ▒▒ ░░ ░░   ░ ▒░ ░ ▒  ▒  ▒ ░    ░      ░ ▒ ▒░
+ ░    ░   ░   ▒      ░   ░ ░  ░ ░  ░  ▒ ░  ░      ░ ░ ░ ▒
+ ░            ░  ░         ░    ░     ░               ░ ░
+      ░                       ░                            
+  This is an OverTheWire Bandit clone made in Alpine Linux
+     More info: https://github.com/rmcmillan34/bandito" > /etc/issue
+
 COPY ./bash_scripts/banners.sh /etc/profile.d/
 RUN chmod +x /etc/profile.d/banners.sh
 
