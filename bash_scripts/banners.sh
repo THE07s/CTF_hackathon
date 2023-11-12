@@ -1,17 +1,6 @@
 #!/bin/bash
 
-echo "\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████
-▓█████▄ ▒████▄     ██ ▀█   █ ▒██▀ ██▌▓██▒▓  ██▒ ▓▒▒██▒  ██▒
-▒██▒ ▄██▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌▒██▒▒ ▓██░ ▒░▒██░  ██▒
-▒██░█▀  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌░██░░ ▓██▓ ░ ▒██   ██░
-░▓█  ▀█▓ ▓█   ▓██▒▒██░   ▓██░░▒████▓ ░██░  ▒██▒ ░ ░ ████▓▒░
-░▒▓███▀▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒▓  ▒ ░▓    ▒ ░░   ░ ▒░▒░▒░
-▒░▒   ░   ▒   ▒▒ ░░ ░░   ░ ▒░ ░ ▒  ▒  ▒ ░    ░      ░ ▒ ▒░
- ░    ░   ░   ▒      ░   ░ ░  ░ ░  ░  ▒ ░  ░      ░ ░ ░ ▒
- ░            ░  ░         ░    ░     ░               ░ ░
-      ░                       ░                             \033[39m
-  This is an OverTheWire Bandit clone made in Alpine Linux
-     More info: https://github.com/rmcmillan34/bandito"
+
 
 sleep 1
 
@@ -27,7 +16,6 @@ echo "\033[32m     ██▓███        █     █░      ███▄   
                ░             ░               ░\033[39m
 Part of the project Portable Wargame NUC (PWN) series of CTF challenges"
 
-sleep 0.5
 
 echo "--[ Playing the game ]--
 

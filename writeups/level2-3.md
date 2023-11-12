@@ -16,9 +16,9 @@ Ensure we are in the home directory with the `pwd` command and list the contents
 
 [INSERT LS output]
 
-We can see that this 
+We can see that this
 
 bandit :
 ---
-# How to Replicate Level 1 → Level 2
+# How to Replicate Level 2 → Level 3
 
