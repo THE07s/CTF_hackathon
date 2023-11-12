@@ -49,7 +49,7 @@ RUN echo $'\033[40m\033[31m \n ▄▄▄▄    ▄▄▄       ███▄    �
      More info: https://github.com/rmcmillan34/bandito \n\ ' > /etc/issue
 
 RUN chmod +x /etc/profile.d/banners.sh
-RUN systemctl reload ssh.service
+RUN rc-service ssh.service restart
 
 # Generate SSH keys
 RUN ssh-keygen -A
