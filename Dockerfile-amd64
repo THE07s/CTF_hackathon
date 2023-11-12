@@ -35,7 +35,7 @@ EXPOSE 2222
 # Configure welcome banners
 RUN echo '' > /etc/motd
 COPY ./bash_scripts/banners.sh /etc/profile.d/
-RUN echo $'\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████ \n\
+RUN echo $'\033[40m\033[31m \n ▄▄▄▄    ▄▄▄       ███▄    █ ▓█████▄  ██▓▄▄▄█████▓ ▒█████ \n\
 ▓█████▄ ▒████▄     ██ ▀█   █ ▒██▀ ██▌▓██▒▓  ██▒ ▓▒▒██▒  ██▒ \n\
 ▒██▒ ▄██▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌▒██▒▒ ▓██░ ▒░▒██░  ██▒ \n\
 ▒██░█▀  ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌░██░░ ▓██▓ ░ ▒██   ██░ \n\
@@ -49,6 +49,7 @@ RUN echo $'\033[40m\033[31m ▄▄▄▄    ▄▄▄       ███▄    █ 
      More info: https://github.com/rmcmillan34/bandito \n\ ' > /etc/issue
 
 RUN chmod +x /etc/profile.d/banners.sh
+RUN systemctl reload ssh.service
 
 # Generate SSH keys
 RUN ssh-keygen -A
