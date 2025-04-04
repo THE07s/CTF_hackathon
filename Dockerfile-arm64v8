@@ -1,44 +1,37 @@
 FROM arm64v8/debian:bullseye-slim
 
-# Mettre à jour les dépôts et installer les dépendances essentielles, ainsi qu'un éditeur de texte (nano)
+# Set build arguments for flexibility
+ARG ROOT_PASSWORD
+
+# Install required packages and clean up
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-       openssh-server \
-       python3 \
-       python3-pip \
-       nano && \
+        nano \
+        openssh-server \
+        python3 \
+        python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-# Configurer le mot de passe de l'utilisateur root
-RUN echo 'root:Haho4231@' | chpasswd
-# Changer le shell par défaut en bash si nécessaire
-#RUN sed -i 's|/bin/sh|/bin/bash|' /etc/passwd
-
-# Configurer SSH pour l'utilisateur root à des fins d'administration (Port 22)
-RUN sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config && \
+# Configure SSH
+RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
+    sed -i 's/#Port 22/Port 2222/' /etc/ssh/sshd_config && \
     echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
     echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
-EXPOSE 22
 
-# Configurer SSH pour tous les niveaux Bandito pour accéder et jouer au jeu (Port 2222)
-RUN echo 'AllowUsers bandito' >> /etc/ssh/sshd_config && \
-    echo 'Port 2222' >> /etc/ssh/sshd_config
+# Expose only the necessary port
 EXPOSE 2222
 
-# Configurer les bannières de bienvenue
+# Add customizations
 RUN : > /etc/motd
 COPY ./scripts_bash/banners.sh /etc/profile.d/
-
-# Copier le fichier de bannière dans /etc/issue
 COPY scripts_bash/issue /etc/issue
-
 RUN chmod +x /etc/profile.d/banners.sh
 
-# Générer les clés SSH
+# Generate SSH host keys
 RUN ssh-keygen -A
 
-# Exécuter les scripts Python pour créer les environnements des niveaux de joueur
-COPY ./levels /app
-RUN python3 /app/level0.py
+# Copy application files
+COPY ./niveaux /app
 
+# Set the default command
 CMD ["/usr/sbin/sshd", "-D"]
