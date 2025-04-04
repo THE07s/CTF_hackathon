@@ -1,9 +1,9 @@
 FROM arm64v8/debian:bullseye-slim
 
-# Set build arguments for flexibility
+# Définir des arguments de build pour plus de flexibilité
 ARG ROOT_PASSWORD
 
-# Install required packages and clean up
+# Installer les paquets requis et nettoyer
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         nano \
@@ -12,26 +12,26 @@ RUN apt-get update && \
         python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-# Configure SSH
+# Configurer SSH
 RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
     sed -i 's/#Port 22/Port 2222/' /etc/ssh/sshd_config && \
     echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
     echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 
-# Expose only the necessary port
+# N'exposer que le port nécessaire
 EXPOSE 2222
 
-# Add customizations
+# Ajouter les personnalisations
 RUN : > /etc/motd
 COPY ./scripts_bash/banners.sh /etc/profile.d/
 COPY scripts_bash/issue /etc/issue
 RUN chmod +x /etc/profile.d/banners.sh
 
-# Generate SSH host keys
+# Générer les clés SSH hôtes
 RUN ssh-keygen -A
 
-# Copy application files
+# Copier les fichiers de l'application
 COPY ./niveaux /app
 
-# Set the default command
+# Spécifier la commande par défaut
 CMD ["/usr/sbin/sshd", "-D"]
