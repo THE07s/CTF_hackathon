@@ -27,10 +27,10 @@ EXPOSE 2222
 
 # Configurer les bannières de bienvenue
 RUN : > /etc/motd
-COPY ./bash_scripts/banners.sh /etc/profile.d/
+COPY ./scripts_bash/banners.sh /etc/profile.d/
 
 # Copier le fichier de bannière dans /etc/issue
-COPY bash_scripts/issue /etc/issue
+COPY scripts_bash/issue /etc/issue
 
 RUN chmod +x /etc/profile.d/banners.sh
 
