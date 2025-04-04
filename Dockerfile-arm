@@ -1,0 +1,62 @@
+# ============================================
+# Dockerfile optimisé pour Debian
+# ============================================
+
+# 1. Image de base : Debian
+FROM debian:stable
+
+# 2. Définition du mainteneur (LABEL remplace MAINTAINER, qui est obsolète)
+LABEL maintainer="https://github.com/rmcmillan34"
+
+# 3. Installation de Bash, OpenSSH, Python3 et pip
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    openssh-server \
+    python3 \
+    python3-venv \
+    python3-pip && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# 4. Autoriser l'authentification par mot de passe en SSH
+RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+
+# 5. Lier /usr/bin/python3 vers /usr/bin/python (optionnel)
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+
+# 6. Utiliser un environnement virtuel pour Python
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# 7. Mise à jour de pip et setuptools dans l’environnement virtuel
+RUN /opt/venv/bin/pip install --no-cache-dir --upgrade pip setuptools
+
+# 8. Configurer le mot de passe root
+RUN echo "root:B4nd1t0" | chpasswd
+
+# 9. Configurer SSH (port standard + root login)
+RUN sed -i 's/^#Port 22/Port 22/' /etc/ssh/sshd_config
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
+# 10. Exposer le port SSH 22
+EXPOSE 22
+
+# 11. Ajouter un second port SSH alternatif (2222)
+RUN echo "Port 2222" >> /etc/ssh/sshd_config
+EXPOSE 2222
+
+# 12. Copier le script de bannière et le rendre exécutable
+COPY ./bash_scripts/banners.sh /etc/profile.d/
+RUN chmod +x /etc/profile.d/banners.sh
+
+# 13. Générer les clés SSH host
+RUN ssh-keygen -A
+
+# 14. Vérifier que le répertoire /var/run/sshd existe
+RUN mkdir -p /var/run/sshd
+
+# 15. Copier et exécuter les scripts Python du jeu (s'il y en a)
+COPY ./levels /app
+RUN test -f /app/level0.py && python3 /app/level0.py || echo "level0.py introuvable"
+
+# 16. Lancer le serveur SSH
+CMD ["/usr/sbin/sshd", "-D"]
