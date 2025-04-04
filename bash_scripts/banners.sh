@@ -2,46 +2,41 @@
 
 sleep 1
 
-echo "\033[32m     ██▓███        █     █░      ███▄    █
-    ▓██░  ██▒     ▓█░ █ ░█░      ██ ▀█   █
-    ▓██░ ██▓▒     ▒█░ █ ░█      ▓██  ▀█ ██▒
-    ▒██▄█▓▒ ▒     ░█░ █ ░█      ▓██▒  ▐▌██▒
-    ▒██▒ ░  ░ ██▓ ░░██▒██▓  ██▓ ▒██░   ▓██░ ██▓
-    ▒▓▒░ ░  ░ ▒▓▒ ░ ▓░▒ ▒   ▒▓▒ ░ ▒░   ▒ ▒  ▒▓▒
-    ░▒ ░      ░▒    ▒ ░ ░   ░▒  ░ ░░   ░ ▒░ ░▒
-    ░░        ░     ░   ░   ░      ░   ░ ░  ░
-               ░      ░      ░           ░   ░
-               ░             ░               ░\033[39m
-Part of the project Portable Wargame NUC (PWN) series of CTF challenges"
+echo "\033[40m\033[31m\
+ ▄████▄  ██░ ██ ▄▄▄      ██▓    ██▓   ▓█████ ███▄    █  ▄████▓█████     ▄████▄ ████████▓ █████▒\n\
+▒██▀ ▀█ ▓██░ ██▒████▄   ▓██▒   ▓██▒   ▓█   ▀ ██ ▀█   █ ██▒ ▀█▓█   ▀    ▒██▀ ▀█ ▓  █   ▓▓██   ▒ \n\
+▒▓█    ▄▒██▀▀██▒██  ▀█▄ ▒██░   ▒██░   ▒███  ▓██  ▀█ ██▒██░▄▄▄▒███      ▒▓█    ▄▒  █░  ▒▒████ ░ \n\
+▒▓▓▄ ▄██░▓█ ░██░██▄▄▄▄██▒██░   ▒██░   ▒▓█  ▄▓██▒  ▐▌██░▓█  ██▒▓█  ▄    ▒▓▓▄ ▄██░  █   ░░▓█▒  ░ \n\
+▒ ▓███▀ ░▓█▒░██▓▓█   ▓██░██████░██████░▒████▒██░   ▓██░▒▓███▀░▒████▒   ▒ ▓███▀ ░ ▒▒   ░░▒█░    \n\
+░ ░▒ ▒  ░▒ ░░▒░▒▒▒   ▓▒█░ ▒░▓  ░ ▒░▓  ░░ ▒░ ░ ▒░   ▒ ▒ ░▒   ▒░░ ▒░ ░   ░ ░▒ ▒  ░ ▒ ░░   ▒ ░    \n\
+  ░  ▒   ▒ ░▒░ ░ ▒   ▒▒ ░ ░ ▒  ░ ░ ▒  ░░ ░  ░ ░░   ░ ▒░ ░   ░ ░ ░  ░     ░  ▒      ░    ░      \n\
+░        ░  ░░ ░ ░   ▒    ░ ░    ░ ░     ░     ░   ░ ░░ ░   ░   ░      ░         ░      ░ ░    \n\
+░ ░      ░  ░  ░     ░  ░   ░  ░   ░  ░  ░  ░        ░      ░   ░  ░   ░ ░                     \n\
+░                                                                      ░                       \n\
+\033[0m
+Fait partie du projet Portable Wargame NUC (PWN) série de challenges CTF"
 
+echo "--[ Jouer au jeu ]--
 
-echo "--[ Playing the game ]--
+Cette machine peut contenir plusieurs wargames.
+Si vous jouez à \"somegame\", alors:
 
-  This machine might hold several wargames.
-  If you are playing "somegame", then:
+    * Les noms d'utilisateur sont somegame0, somegame1, ...
+    * La plupart des niveaux se trouvent dans /somegame/.
+    * Les mots de passe pour chaque niveau sont stockés dans /etc/somegame_pass/.
 
-    * USERNAMES are somegame0, somegame1, ...
-    * Most LEVELS are stored in /somegame/.
-    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+L'accès en écriture aux répertoires personnels étant désactivé, il est conseillé de créer un répertoire de travail avec un nom difficile à deviner dans /tmp/. Vous pouvez utiliser la commande \"mktemp -d\" afin de générer un répertoire aléatoire et difficile à deviner dans /tmp/. L'accès en lecture à /tmp/ est désactivé et l'accès à /proc est restreint pour empêcher les utilisateurs de se surveiller mutuellement. Les fichiers et répertoires aux noms facilement devinables ou trop courts seront supprimés périodiquement ! Le répertoire /tmp est régulièrement effacé.
+S'il vous plaît, soyez respectueux :
 
-  Write-access to homedirectories is disabled. It is advised to create a
-  working directory with a hard-to-guess name in /tmp/.  You can use the
-  command \"mktemp -d\" in order to generate a random and hard to guess
-  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
-  restricted so that users cannot snoop on eachother. Files and directories
-  with easily guessable or short names will be periodically deleted! The /tmp
-  directory is regularly wiped.
-  Please play nice:
+    * Ne laissez pas de processus orphelins en cours d'exécution
+    * Ne laissez pas traîner de fichiers d'exploit
+    * N'embêtez pas les autres joueurs
 
-    * don't leave orphan processes running
-    * dont' leave exploit-files laying around
-    * don't annoy other players
+--[ Plus d'informations ]--
 
---[ More information ]--
+Pour plus d'informations concernant les wargames individuelles, visitez
+https://github.com/rmcmillan34/bandito
 
-  For more information regarding individual wargames, visit
-  https://github.com/rmcmillan34/bandito
+Si vous trouvez un bug, n'hésitez pas à signaler un problème sur le Github ci-dessus.
 
-  If you find a bug please feel free to raise an issue on the github above.
-
-  Enjoy your stay!"
+Profitez de votre séjour!"
