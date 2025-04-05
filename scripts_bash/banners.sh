@@ -2,13 +2,7 @@
 
 sleep 1
 
-highlight_ascii() {
-    while IFS= read -r line; do
-        echo -e "\033[40m\033[31m$(echo "$line" | sed 's/█/\033[97m█\033[31m/g')"
-    done
-}
-
-highlight_ascii << "EOF"
+echo -e "\033[40m\033[31m
  ▄████▄  ██░ ██ ▄▄▄      ██▓    ██▓   ▓█████ ███▄    █  ▄████▓█████     ▄████▄ ████████▓ █████▒
 ▒██▀ ▀█ ▓██░ ██▒████▄   ▓██▒   ▓██▒   ▓█   ▀ ██ ▀█   █ ██▒ ▀█▓█   ▀    ▒██▀ ▀█ ▓  ██  ▓  █   ▒ 
 ▒▓█    ▄▒██▀▀██▒██  ▀█▄ ▒██░   ▒██░   ▒███  ▓██  ▀█ ██▒██░▄▄▄▒███      ▒▓█    ▄▒  █░  ▒  ███ ░ 
@@ -18,10 +12,8 @@ highlight_ascii << "EOF"
   ░  ▒   ▒ ░▒░ ░ ▒   ▒▒ ░ ░ ▒  ░ ░ ▒  ░░ ░  ░ ░░   ░ ▒░ ░   ░ ░ ░  ░     ░  ▒      ░    ░      
 ░        ░  ░░ ░ ░   ▒    ░ ░    ░ ░     ░     ░   ░ ░░ ░   ░   ░      ░         ░      ░ ░    
 ░ ░      ░  ░  ░     ░  ░   ░  ░   ░  ░  ░  ░        ░      ░   ░  ░   ░ ░                     ░
-░                                                                      ░                       
-EOF
-
-echo -e "\033[0m" # Reset des couleurs
+░                                                                      ░                       \033[0m
+Fait partie du projet Portable Wargame NUC (PWN) — série de challenges CTF"
 
 echo "--[ Jouer au jeu ]--
 
