@@ -1,8 +1,8 @@
 # Script d'initialisation pour l'utilisateur niveau1
 
 import os
-import niveaux.CTF_lib as CTF_lib
-import niveaux.niveau2 as niveau2
+import CTF_lib as CTF_lib
+import niveau2 as niveau2
 
 def main():
     NIVEAU = 1

@@ -1,16 +1,20 @@
 FROM arm64v8/debian:bullseye-slim
 
 # Définir des arguments de build pour plus de flexibilité
-ARG ROOT_PASSWORD
+ARG ROOT_PASSWORD="Haho4231@"
 
 # Installer les paquets requis et nettoyer
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        tree\
         nano \
         openssh-server \
         python3 \
         python3-pip && \
     rm -rf /var/lib/apt/lists/*
+
+# Créer le répertoire de séparation des privilèges pour SSH
+RUN mkdir -p /run/sshd
 
 # Configurer SSH
 RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
@@ -33,5 +37,8 @@ RUN ssh-keygen -A
 # Copier les fichiers de l'application
 COPY ./niveaux /app
 
+# Définir le dossier de travail
+WORKDIR /app
+
 # Spécifier la commande par défaut
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["sh", "-c", "python3 niveau0.py && /usr/sbin/sshd -D"]
