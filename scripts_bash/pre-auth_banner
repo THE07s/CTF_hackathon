@@ -1,4 +1,3 @@
-\033[40m\033[31m
       ___         ___         ___         ___         ___                 ___         ___     
      /__/\       /  /\       /  /\       /__/|       /  /\        ___    /  /\       /__/\    
      \  \:\     /  /::\     /  /:/      |  |:|      /  /::\      /  /\  /  /::\      \  \:\   
@@ -10,7 +9,8 @@
    \  \:\      \  \:\      \  \:\/:/   \  \:\      \  \:\         \  \:\  \:\/:/   \  \:\     
     \  \:\      \  \:\      \  \::/     \  \:\      \  \:\         \__\/\  \::/     \  \:\    
      \__\/       \__\/       \__\/       \__\/       \__\/               \__\/       \__\/    
-\033[0m
 
-Il s'agit d'un clone OverTheWire Bandit réalisé sous Debian (Raspbian Lite) 
-Plus d'informations : https://github.com/THE07s/CTF_hackaton
+            Il s'agit d'un clone OverTheWire Bandit réalisé sous Raspbian Lite
+              Plus d'informations sur https://github.com/THE07s/CTF_hackaton
+
+password :

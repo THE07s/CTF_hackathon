@@ -21,7 +21,7 @@ RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
     sed -i 's/#Port 22/Port 2222/' /etc/ssh/sshd_config && \
     echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
     echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
-    echo 'Banner /etc/issue' >> /etc/ssh/sshd_config
+    echo 'Banner /etc/pre-auth_banner' >> /etc/ssh/sshd_config
 
 # N'exposer que le port nécessaire
 EXPOSE 2222
@@ -29,7 +29,7 @@ EXPOSE 2222
 # Ajouter les personnalisations
 RUN : > /etc/motd
 COPY ./scripts_bash/banners.sh /etc/profile.d/
-COPY scripts_bash/issue /etc/issue
+COPY scripts_bash/pre-auth_banner /etc/pre-auth_banner
 RUN chmod +x /etc/profile.d/banners.sh
 
 # Générer les clés SSH hôtes
