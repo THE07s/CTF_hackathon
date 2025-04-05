@@ -12,7 +12,7 @@ def main():
 
     # Création d'un fichier spécial (nom commençant par "-") dans le répertoire personnel de niveau3 contenant le mot de passe
     os.system(f"touch /home/niveau{NIVEAU}/-")
-    os.system(f"echo '{mdp}' >> /home/{NIVEAU - 1}/-")
+    os.system(f"echo '{mdp}' >> /home/niveau{NIVEAU}/-")
     os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} /home/niveau{NIVEAU}/-")
     os.system(f"chmod 640 /home/niveau{NIVEAU}/-")
     
