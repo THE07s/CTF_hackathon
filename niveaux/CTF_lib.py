@@ -13,7 +13,7 @@ def ajout_utilisateur(niv):
     - Configure le profil Bash.
     '''
     mdp = get_mdp_hash()
-    os.system(f"adduser -h '/home/niveau{niv}' -s /bin/bash -D 'niveau{niv}' && echo 'niveau{niv}:{mdp}' | chpasswd")
+    os.system(f"useradd -m -d /home/niveau{niv} -s /bin/bash niveau{niv} && echo 'niveau{niv}:{mdp}' | chpasswd")
     ecrire_fichier_mdp(niv, mdp)
     config_ssh(niv)
     config_bash(niv)
