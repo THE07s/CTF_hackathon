@@ -40,7 +40,7 @@ COPY ./niveaux /app
 # Définir le dossier de travail
 WORKDIR /app
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # Spécifier la commande par défaut
 CMD ["sh", "-c", "python3 niveau0.py && /usr/sbin/sshd -D"]

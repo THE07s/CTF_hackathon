@@ -12,7 +12,7 @@ def main():
 
     # Création d'un fichier spécial dans le répertoire personnel de niveau2 contenant le mot de passe
     os.system("touch /home/niveau2/-")
-    os.system(f"echo '{mdp}' >> /home/niveau2/-")
+    os.system(f"echo '{mdp}' >> /home/niveau{NIVEAU - 1}/readme")
     os.system("chown niveau2:niveau2 /home/niveau2/-")
     os.system("chmod 640 /home/niveau2/-")
 
