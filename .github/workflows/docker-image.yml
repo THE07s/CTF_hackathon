@@ -4,18 +4,7 @@ on:
   push
 
 jobs:
-  publish-bandito-amd64:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Build and Push the image (AMD64)
-        run: |
-          docker login --username rmcmillan34 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --file Dockerfile-amd64 --tag ghcr.io/rmcmillan34/bandito:latest-amd64
-          docker push ghcr.io/rmcmillan34/bandito:latest-amd64
- 
-  publish-bandito-arm64:
+  publish-CTF_hackaton-arm64:
     runs-on: ubuntu-latest
     steps:
       # Get the repository's code
@@ -29,8 +18,10 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Build and Push the image (ARM64)
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.MY_PASS }}
         run: |
-          docker login --username rmcmillan34 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --file ./Dockerfile-arm64v8 --tag ghcr.io/rmcmillan34/bandito:latest-arm64v8 --platform linux/arm/v8
-          docker push ghcr.io/rmcmillan34/bandito:latest-arm64v8
-          
+          docker login --username $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD ghcr.io
+          docker build . --file ./Dockerfile-arm64v8 --tag ghcr.io/$DOCKER_USERNAME/CTF_hackaton:latest-arm64v8 --platform linux/arm64
+          docker push ghcr.io/$DOCKER_USERNAME/CTF_hackaton:latest-arm64v8

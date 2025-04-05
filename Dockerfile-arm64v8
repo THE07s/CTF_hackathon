@@ -1,49 +1,47 @@
-FROM arm64v8/alpine
-MAINTAINER https://github.com/rmcmillan34
+FROM arm64v8/debian:bullseye-slim
 
-# Install Bash and cleanup
-RUN apk update && \
-  apk add --no-cache bash
+# Définir des arguments de build pour plus de flexibilité
+ARG ROOT_PASSWORD="Haho4231@"
 
-# Install OpenSSH and cleanup
-RUN apk add --no-cache openssh
-RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
-  rm -rf /var/cache/apk/*
+# Installer les paquets requis et nettoyer
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        tree\
+        nano \
+        openssh-server \
+        python3 \
+        python3-pip && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Python3 and pip
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+# Créer le répertoire de séparation des privilèges pour SSH
+RUN mkdir -p /run/sshd
 
-# Configure the root user password
-RUN echo 'root:B4nd1t0' | chpasswd
-# Change default shell to bash
-#RUN sed -i 's/SHELL=\/bin\/sh/SHELL=\/bin\/bash/' /etc/default/useradd
-#RUN chsh -s /bin/bash deploy
+# Configurer SSH
+RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
+    sed -i 's/#Port 22/Port 2222/' /etc/ssh/sshd_config && \
+    echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
+    echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
+    echo 'Banner /etc/pre-auth_banner' >> /etc/ssh/sshd_config
 
-# Configure SSH for root user for administration purposes (Port 22)
-RUN sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-RUN echo 'PermitRootLogin yes >>' /etc/ssh/sshd_config
-EXPOSE 22
-
-# Configure SSH for all Bandito levels to access and play the game (Port 2222)
-RUN echo 'AllowUsers' >> /etc/ssh/sshd_config
-RUN echo 'Port 2222' >> /etc/ssh/sshd_config
+# N'exposer que le port nécessaire
 EXPOSE 2222
 
-# Configure welcome banners
-COPY ./bash_scripts/banners.sh /etc/profile.d/
+# Ajouter les personnalisations
+RUN : > /etc/motd
+COPY ./scripts_bash/banners.sh /etc/profile.d/
+COPY scripts_bash/pre-auth_banner /etc/pre-auth_banner
 RUN chmod +x /etc/profile.d/banners.sh
 
-# Generate SSH keys
+# Générer les clés SSH hôtes
 RUN ssh-keygen -A
 
-# Run Python scripts to create the player level environments.
-COPY ./levels /app
-RUN python3 /app/level0.py
+# Copier les fichiers de l'application
+COPY ./niveaux /app
 
+# Définir le dossier de travail
+WORKDIR /app
 
-CMD ["/usr/sbin/sshd", "-D"]
+ENV LANG=C.UTF-8
 
-
-
+# Spécifier la commande par défaut
+CMD ["sh", "-c", "python3 niveau0.py && /usr/sbin/sshd -D"]
