@@ -8,9 +8,6 @@ def main():
     NIVEAU = 1
     SUIVANT = 2
 
-    # Crée l'utilisateur niveau1
-    CTF_lib.ajout_utilisateur(NIVEAU)
-
     # Génère le mot de passe du niveau suivant et l'enregistre
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
