@@ -42,6 +42,7 @@ def config_ssh(niv: int):
     os.system(f"export PS1='\033[32m\033[40m\\u@\\h$; clear' > /home/niveau{niv}/.ssh/rc")
     os.system(f"echo '. /home/niveau{niv}/.bash_profile' > /home/niveau{niv}/.ssh/rc")
 
+
 def ecrire_fichier_mdp(niv: int, mdp: str):
     '''Écrit le mot de passe dans /etc/niveau_mdps/niveauX et restreint les permissions'''
     os.system("mkdir -p /etc/niveau_mdps")
