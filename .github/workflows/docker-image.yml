@@ -23,5 +23,5 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.MY_PASS }}
         run: |
           docker login --username $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD ghcr.io
-          docker build . --file ./Dockerfile-arm64v8 --tag ghcr.io/$DOCKER_USERNAME/CTF_hackaton:latest-arm64v8 --platform linux/arm64
+          docker build . --file ./Dockerfile --tag ghcr.io/$DOCKER_USERNAME/CTF_hackaton:latest-arm64v8 --platform linux/arm64
           docker push ghcr.io/$DOCKER_USERNAME/CTF_hackaton:latest-arm64v8

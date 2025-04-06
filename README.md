@@ -21,7 +21,7 @@ Bandito est un clone conteneurisé, léger et portable du wargame Bandit d'OverT
 1. **Construction de l'image Docker :**  
    Utilisez le Dockerfile adapté à votre architecture (amd64, arm, arm64v8) pour construire l'image. Par exemple, pour ARM64 (sur Raspberry Pi) :  
    ```bash
-   docker build -t bandito:arm64v8 -f Dockerfile-arm64v8 .
+   docker build -t bandito:arm64v8 -f Dockerfile .
    ```
 2. **Exécution du Conteneur :**  
    Une fois l'image construite, lancez le conteneur :
