@@ -1,7 +1,6 @@
 import os
 import subprocess
 import pandas as pd
-import ace_tools as tools
 
 def run_as(user, cmd):
     try:
@@ -71,6 +70,6 @@ def main():
         })
 
     df = pd.DataFrame(resultats)
-    tools.display_dataframe_to_user(name="Validation CTF Hackaton – niveaux 0 à 33", dataframe=df)
+    print(df)
 
 main()
