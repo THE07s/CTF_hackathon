@@ -86,3 +86,59 @@ def main():
     tools.display_dataframe_to_user(name="Validation finale niveaux 0 à 9", dataframe=df)
 
 main()
+
+
+
+# #!/usr/bin/env python3
+# import os
+# import subprocess
+
+# NIVEAUX = 34
+
+# def test_read_password(niveau):
+#     user = f"niveau{niveau}"
+#     next_user = f"niveau{niveau+1}" if niveau < NIVEAUX - 1 else None
+#     print(f"🧪 Test niveau {niveau} ({user})")
+
+#     if not next_user:
+#         print("✅ Dernier niveau, rien à tester")
+#         return True
+
+#     # Chemin du mot de passe
+#     mdp_path = f"/etc/bandit_pass/{next_user}"
+#     if not os.path.exists(mdp_path):
+#         print(f"❌ Mot de passe {next_user} manquant")
+#         return False
+
+#     # Lire via su -c
+#     try:
+#         result = subprocess.run(
+#             ["su", "-c", f"cat {mdp_path}", user],
+#             capture_output=True, text=True, timeout=5
+#         )
+#         if result.returncode != 0:
+#             print(f"❌ Accès refusé au mot de passe de {next_user}")
+#             return False
+#         output = result.stdout.strip()
+#         if len(output) < 6:
+#             print(f"❌ Mot de passe trop court ou vide pour {next_user}")
+#             return False
+#         print(f"✅ {user} peut accéder au mot de passe de {next_user} : {output}")
+#         return True
+#     except Exception as e:
+#         print(f"❌ Erreur sur niveau {niveau} : {e}")
+#         return False
+
+# def main():
+#     erreurs = 0
+#     for i in range(NIVEAUX):
+#         if not test_read_password(i):
+#             erreurs += 1
+
+#     if erreurs == 0:
+#         print("\n🎉 Tous les niveaux sont valides !")
+#     else:
+#         print(f"\n⚠️ {erreurs} niveau(x) en erreur")
+
+# if __name__ == "__main__":
+#     main()
