@@ -4,6 +4,7 @@ import os
 import CTF_lib
 import niveau22
 import string
+import random
 
 def main():
     NIVEAU = 21
