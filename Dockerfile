@@ -15,8 +15,18 @@ RUN apt-get update && \
         openssl \
         python3 \
         python3-pip \
-        bzip2 && \
-    rm -rf /var/lib/apt/lists/*
+        bzip2 \
+        vim-common \
+        findutils \
+        binutils \
+        coreutils \
+        file \
+        netcat \
+        tcpdump \
+        iputils-ping \
+        lsof \
+        procps \
+    && rm -rf /var/lib/apt/lists/*
 
 
 # Créer le répertoire de séparation des privilèges pour SSH
@@ -48,6 +58,9 @@ RUN ssh-keygen -A
 
 # Copier les fichiers de l'application
 COPY ./niveaux /app
+
+# Restreindre l'accès au code du jeu
+RUN chmod -R 700 /app && chown root:root /app
 
 # Définir le dossier de travail
 WORKDIR /app
