@@ -22,7 +22,6 @@ Merci d’avoir joué ❤️
 
 🐧 À bientôt pour de nouveaux défis !
 """
-
     readme_path = os.path.join(dossier, "readme")
     with open(readme_path, "w") as f:
         f.write(contenu_readme)
@@ -32,6 +31,17 @@ Merci d’avoir joué ❤️
 
     # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
+
+    # Afficher dans le terminal les mots de passe de tous les niveaux 0 à 33
+    print("\n=== Liste des mots de passe (niveau 0 à 33) ===")
+    for niv in range(0, 34):
+        chemin_mdp = f"/etc/niveau_mdps/niveau{niv}"
+        try:
+            with open(chemin_mdp, "r") as f:
+                mdp = f.read().strip()
+            print(f"Niveau {niv} : {mdp}")
+        except Exception as e:
+            print(f"Erreur lors de la lecture du niveau {niv} : {e}")
 
 if __name__ == '__main__':
     main()
