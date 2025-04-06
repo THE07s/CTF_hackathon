@@ -12,7 +12,7 @@ def main():
 
     # Attente pour éviter les erreurs de chown/open trop précoces
     print("⏳ Attente que les utilisateurs et répertoires soient bien enregistrés...")
-    time.sleep(2)
+    time.sleep(24)
 
     print("\n✅ Tous les utilisateurs ont été créés avec succès.\nTu peux maintenant lancer le script niveau 0.")
     
