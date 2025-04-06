@@ -20,54 +20,42 @@ def get_mdp_verite(niveau):
     except:
         return None
 
-# Fonctions mises à jour pour correspondre aux scripts modifiés
-def jouer_niveau0():
-    return run_as("niveau0", "cat readme")
-
-def jouer_niveau1():
-    return run_as("niveau1", "cat ./-")
-
-def jouer_niveau2():
-    return run_as("niveau2", "cat 'mon nom contient des espaces'")
-
-def jouer_niveau3():
-    return run_as("niveau3", "cat jeSuisLa/...tuNeMeVoisPaaaas")
-
-def jouer_niveau4():
-    cmd = "file jeSuisLa/* | grep ASCII | cut -d':' -f1 | xargs cat"
-    return run_as("niveau4", cmd)
-
-def jouer_niveau5():
-    cmd = "find jeSuisLa -type f -size 1033c ! -executable -exec cat {} \;"
-    return run_as("niveau5", cmd)
-
-def jouer_niveau6():
-    cmd = "find / -type f -size 33c -user niveau7 -group niveau6 2>/dev/null -exec cat {} \;"
-    return run_as("niveau6", cmd)
-
-def jouer_niveau7():
-    cmd = "grep millionth data.txt | cut -d' ' -f2"
-    return run_as("niveau7", cmd)
-
-def jouer_niveau8():
-    cmd = "sort data.txt | uniq -u"
-    return run_as("niveau8", cmd)
-
-def jouer_niveau9():
-    cmd = "strings data.txt | grep ="
-    return run_as("niveau9", cmd)
-
+# Joueurs simulés pour chaque niveau
 joueurs = [
-    jouer_niveau0,
-    jouer_niveau1,
-    jouer_niveau2,
-    jouer_niveau3,
-    jouer_niveau4,
-    jouer_niveau5,
-    jouer_niveau6,
-    jouer_niveau7,
-    jouer_niveau8,
-    jouer_niveau9,
+    lambda: run_as("niveau0", "cat readme"),
+    lambda: run_as("niveau1", "cat ./-"),
+    lambda: run_as("niveau2", "cat 'mon nom contient des espaces'"),
+    lambda: run_as("niveau3", "cat jeSuisLa/...tuNeMeVoisPaaaas"),
+    lambda: run_as("niveau4", "file jeSuisLa/* | grep ASCII | cut -d':' -f1 | xargs cat"),
+    lambda: run_as("niveau5", "find jeSuisLa -type f -size 1033c ! -executable -exec cat {} \\;"),
+    lambda: run_as("niveau6", "find / -type f -size 33c -user niveau7 -group niveau6 2>/dev/null -exec cat {} \\;"),
+    lambda: run_as("niveau7", "grep millionth data.txt | cut -d' ' -f2"),
+    lambda: run_as("niveau8", "sort data.txt | uniq -u"),
+    lambda: run_as("niveau9", "strings data.txt | grep ="),
+    lambda: run_as("niveau10", "base64 -d data.txt"),
+    lambda: run_as("niveau11", "tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt"),
+    lambda: run_as("niveau12", "xxd -r data.txt"),
+    lambda: run_as("niveau13", "ssh -i /tmp/sshkey_niveau13/id_rsa niveau14@localhost -p 2222 'cat readme'"),
+    lambda: run_as("niveau14", "openssl rsautl -decrypt -inkey /tmp/key15.pem -in data.txt"),
+    lambda: run_as("niveau15", "openssl rsautl -decrypt -inkey /tmp/key16.pem -in data.txt"),
+    lambda: run_as("niveau16", "nmap -p- localhost -Pn | grep open | cut -d'/' -f1 | xargs -I{{}} nc localhost {{}} <<< niveau16"),
+    lambda: run_as("niveau17", "grep mot_de_passe fichier.txt | cut -d':' -f2 | tr -d ' '"),
+    lambda: run_as("niveau18", "ps aux | grep '/le/fichier' | grep -v grep | awk '{print $2}' | xargs cat"),
+    lambda: run_as("niveau19", "lsof -p $(pgrep -f /le/fichier) | grep /le/fichier | awk '{print $9}' | xargs cat"),
+    lambda: run_as("niveau20", "ls -lR / | grep niveau21 | awk '{print $9}' | xargs cat 2>/dev/null"),
+    lambda: run_as("niveau21", "grep -a -oE '[a-f0-9]{32}' /tmp/* | head -n1"),
+    lambda: run_as("niveau22", "grep -a -oE '[a-f0-9]{32}' /dev/random | head -n1"),
+    lambda: run_as("niveau23", "strings fichier_binaire | grep -oE '[a-f0-9]{32}'"),
+    lambda: run_as("niveau24", "for pin in $(seq -w 0000 9999); do echo \"$(cat /etc/niveau_mdps/niveau24) $pin\" | nc localhost 30002; done | grep -v Wrong"),
+    lambda: run_as("niveau25", "echo $(cat /etc/niveau_mdps/niveau25) | nc -u localhost 31001"),
+    lambda: run_as("niveau26", "nc -v localhost 31002 <<< $(cat /etc/niveau_mdps/niveau26)"),
+    lambda: run_as("niveau27", "cat fichier.zip | unzip -p -"),
+    lambda: run_as("niveau28", "cat fichier.gz | gzip -d -"),
+    lambda: run_as("niveau29", "cat fichier.bz2 | bzip2 -d -"),
+    lambda: run_as("niveau30", "cat fichier.xz | xz -d -"),
+    lambda: run_as("niveau31", "cat fichier_comprime | tar xOzf -"),
+    lambda: run_as("niveau32", "ls -laR / 2>/dev/null | grep niveau33 | awk '{print $9}' | xargs cat 2>/dev/null"),
+    lambda: "🎉 BRAVO, vous avez terminé tous les niveaux du CTF Hackaton ! 🎉"
 ]
 
 def main():
@@ -83,62 +71,6 @@ def main():
         })
 
     df = pd.DataFrame(resultats)
-    tools.display_dataframe_to_user(name="Validation finale niveaux 0 à 9", dataframe=df)
+    tools.display_dataframe_to_user(name="Validation CTF Hackaton – niveaux 0 à 33", dataframe=df)
 
 main()
-
-
-
-# #!/usr/bin/env python3
-# import os
-# import subprocess
-
-# NIVEAUX = 34
-
-# def test_read_password(niveau):
-#     user = f"niveau{niveau}"
-#     next_user = f"niveau{niveau+1}" if niveau < NIVEAUX - 1 else None
-#     print(f"🧪 Test niveau {niveau} ({user})")
-
-#     if not next_user:
-#         print("✅ Dernier niveau, rien à tester")
-#         return True
-
-#     # Chemin du mot de passe
-#     mdp_path = f"/etc/niveau_mdps/{next_user}"
-#     if not os.path.exists(mdp_path):
-#         print(f"❌ Mot de passe {next_user} manquant")
-#         return False
-
-#     # Lire via su -c
-#     try:
-#         result = subprocess.run(
-#             ["su", "-c", f"cat {mdp_path}", user],
-#             capture_output=True, text=True, timeout=5
-#         )
-#         if result.returncode != 0:
-#             print(f"❌ Accès refusé au mot de passe de {next_user}")
-#             return False
-#         output = result.stdout.strip()
-#         if len(output) < 6:
-#             print(f"❌ Mot de passe trop court ou vide pour {next_user}")
-#             return False
-#         print(f"✅ {user} peut accéder au mot de passe de {next_user} : {output}")
-#         return True
-#     except Exception as e:
-#         print(f"❌ Erreur sur niveau {niveau} : {e}")
-#         return False
-
-# def main():
-#     erreurs = 0
-#     for i in range(NIVEAUX):
-#         if not test_read_password(i):
-#             erreurs += 1
-
-#     if erreurs == 0:
-#         print("\n🎉 Tous les niveaux sont valides !")
-#     else:
-#         print(f"\n⚠️ {erreurs} niveau(x) en erreur")
-
-# if __name__ == "__main__":
-#     main()
