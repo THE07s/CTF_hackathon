@@ -119,7 +119,3 @@ Tu trouveras ce workflow dans `.github/workflows/docker.yml`
 - Respecte les autres joueurs 🫶
 
 Bonne chance, et ouvre bien les 👀
----
-
-✅ Je peux te le coller en fichier `README.md` dans ton dépôt local (ou projet actuel) si tu veux.  
-Souhaites-tu maintenant qu’on passe à la **création du `Makefile`** ?
