@@ -58,10 +58,10 @@ def config_bash(niv: int):
     # Redirection de l'historique dans un fichier en /tmp
     hist = "export HISTFILE=/tmp/$(whoami)_bash_history"
     os.system(f"touch /home/niveau{niv}/.bashrc")
-    os.system(f'echo "{ps1}" > /home/niveau{niv}/.bashrc; echo "{hist}" >> /home/niveau{niv}/.bashrc; source /home/niveau{niv}/.bashrc')
+    os.system(f'echo "{ps1}" > /home/niveau{niv}/.bashrc; echo "{hist}" >> /home/niveau{niv}/.bashrc; . /home/niveau{niv}/.bashrc')
     os.system(f"touch /home/niveau{niv}/.bash_profile")
-    os.system(f'echo "{ps1}" >> /home/niveau{niv}/.bash_profile; echo "{hist}" >> /home/niveau{niv}/.bash_profile; source /home/niveau{niv}/.bash_profile')
-    os.system(f'echo "alias ls=\'ls --color=never\'" >> /home/niveau{niv}/.bash_profile; source /home/niveau{niv}/.bash_profile')
+    os.system(f'echo "{ps1}" >> /home/niveau{niv}/.bash_profile; echo "{hist}" >> /home/niveau{niv}/.bash_profile; . /home/niveau{niv}/.bash_profile')
+    os.system(f'echo "alias ls=\'ls --color=never\'" >> /home/niveau{niv}/.bash_profile; . /home/niveau{niv}/.bash_profile')
 
 
 def dossier_home_lecture(niv: int):

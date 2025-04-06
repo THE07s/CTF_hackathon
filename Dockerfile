@@ -14,7 +14,8 @@ RUN apt-get update && \
         openssh-server \
         openssl \
         python3 \
-        python3-pip && \
+        python3-pip \
+        bzip2 && \
     rm -rf /var/lib/apt/lists/*
 
 

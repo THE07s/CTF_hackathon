@@ -9,10 +9,6 @@ def main():
     for niveau in range(0, 25):
         print(f" → Création de l'utilisateur niveau{niveau}")
         CTF_lib.ajout_utilisateur(niveau)
-        # print("⏳ Attente que l'utilisateur et ses répertoires soient bien enregistrés...")
-        # time.sleep(1)
-
-    print("\n✅ Tous les utilisateurs ont été créés avec succès.\nTu peux maintenant lancer le script niveau 0.")
     
     # Lancement du niveau 0
     print("Génération du niveau 0...")
