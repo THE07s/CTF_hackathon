@@ -5,6 +5,7 @@ import random
 import threading
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import CTF_lib
+import niveau27
 
 def main():
     NIVEAU = 26
@@ -56,6 +57,9 @@ Bonne chance, et n’oublie pas : ouvre les 👀
 
     # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
+
+    # Lancer niveau suivant
+    niveau27.main()
 
 if __name__ == '__main__':
     main()

@@ -4,6 +4,7 @@ import os
 import base64
 import gzip
 import CTF_lib
+import niveau28
 
 def main():
     NIVEAU = 27
@@ -56,6 +57,9 @@ Bonne chance, et n’oublie pas : ouvre les 👀
 
     # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
+
+    # Lancer niveau suivant
+    niveau28.main()
 
 if __name__ == '__main__':
     main()

@@ -5,6 +5,7 @@ import socket
 import threading
 import random
 import CTF_lib
+import niveau25
 
 def main():
     NIVEAU = 24
@@ -72,6 +73,9 @@ Bonne chance, et n’oublie pas : ouvre les 👀
 
     # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
+
+    # Lancer niveau suivant
+    niveau25.main()
 
 if __name__ == '__main__':
     main()
