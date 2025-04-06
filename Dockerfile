@@ -26,8 +26,14 @@ RUN apt-get update && \
         iputils-ping \
         lsof \
         procps \
+        build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Installer les dépendances Python
+RUN pip3 install pandas
+
+# Alias pour compatibilité
+RUN ln -sf /bin/netcat /bin/nc || true
 
 # Créer le répertoire de séparation des privilèges pour SSH
 RUN mkdir -p /run/sshd
