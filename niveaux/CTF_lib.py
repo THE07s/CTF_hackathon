@@ -5,27 +5,22 @@ import hashlib
 from datetime import datetime, timezone
 
 
-def ajout_utilisateur(n: int):
-    username = f"niveau{n}"
-    home_dir = f"/home/{username}"
-
-    # Crée l'utilisateur avec répertoire home s'il n'existe pas
-    os.system(f"id -u {username} >/dev/null 2>&1 || useradd -m -d {home_dir} -s /bin/bash {username}")
-
-    # Crée le dossier home manuellement au cas où useradd échoue
-    os.makedirs(home_dir, exist_ok=True)
-
-    # Crée la clé SSH
-    ssh_dir = f"{home_dir}/.ssh"
-    os.makedirs(ssh_dir, exist_ok=True)
-    os.system(f"ssh-keygen -q -t rsa -N '' -f {ssh_dir}/id_rsa <<< y >/dev/null 2>&1")
-    os.system(f"cp {ssh_dir}/id_rsa.pub {ssh_dir}/authorized_keys")
-
-    # Droits
-    os.system(f"chown -R {username}:{username} {home_dir}")
-    os.system(f"chmod 700 {ssh_dir}")
-    os.system(f"chmod 600 {ssh_dir}/id_rsa {ssh_dir}/authorized_keys")
-
+def ajout_utilisateur(niv: int) -> str:
+    '''Configuration commune pour tous les utilisateurs de niveau.
+    - Ajoute un utilisateur système et change son mot de passe.
+    - Écrit le fichier de mot de passe dans /etc/niveau_mdps/niveauX.
+    - Configure l'accès SSH.
+    - Configure le profil Bash.
+    '''
+    if niv == 0:
+        mdp = "niveau0"
+    else:
+        mdp = get_mdp_hash(niv)
+    os.system(f"useradd -m -d /home/niveau{niv} -s /bin/bash niveau{niv} && echo 'niveau{niv}:{mdp}' | chpasswd")
+    ecrire_fichier_mdp(niv, mdp)
+    config_ssh(niv)
+    config_bash(niv)
+    return mdp
 
 
 def get_mdp_hash(niv: int) -> str:

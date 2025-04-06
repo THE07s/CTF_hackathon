@@ -10,7 +10,7 @@ def main():
         print(f" → Création de l'utilisateur niveau{niveau}")
         CTF_lib.ajout_utilisateur(niveau)
         print("⏳ Attente que l'utilisateur et ses répertoires soient bien enregistrés...")
-        time.sleep(1)
+        time.sleep(3)
 
     print("\n✅ Tous les utilisateurs ont été créés avec succès.\nTu peux maintenant lancer le script niveau 0.")
     
