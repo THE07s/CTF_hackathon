@@ -1,5 +1,3 @@
-## ✅ Voici le `README.md` final de **CTF Hackaton**
-
 # 🧩 CTF Hackaton — Défi Linux Conteneurisé
 
 CTF Hackaton est un clone francisé et conteneurisé du wargame **Bandit** d'OverTheWire.  
