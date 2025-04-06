@@ -25,6 +25,9 @@ Tu es dans ton répertoire personnel. Un ou plusieurs fichiers s'y trouveront, e
 Utilise des commandes "simples" pour afficher le contenu d’un fichier texte.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
+
+À chaque niveau, vous trouverez un fichier readme pour vous aider
+
 Mot de passe : {mdp_suivant}
 """
     chemin_fichier = f"/home/niveau{NIVEAU}/readme"

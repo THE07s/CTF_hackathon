@@ -6,12 +6,17 @@ ARG ROOT_PASSWORD="root"
 # Installer les paquets requis et nettoyer
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        tree\
+        tree \
         nano \
+        netcat \
+        telnet \
+        nmap \
         openssh-server \
+        openssl \
         python3 \
         python3-pip && \
     rm -rf /var/lib/apt/lists/*
+
 
 # Créer le répertoire de séparation des privilèges pour SSH
 RUN mkdir -p /run/sshd
@@ -24,7 +29,12 @@ RUN echo "root:${ROOT_PASSWORD}" | chpasswd && \
     echo 'Banner /etc/pre-auth_banner' >> /etc/ssh/sshd_config
 
 # N'exposer que le port nécessaire
+EXPOSE 22
 EXPOSE 2222
+EXPOSE 30000
+EXPOSE 30001
+EXPOSE 31000-32000
+
 
 # Ajouter les personnalisations
 RUN : > /etc/motd

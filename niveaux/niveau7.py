@@ -19,7 +19,7 @@ def main():
 
     # Génère 10 000 lignes de bruit
     for _ in range(10000):
-        bruit = ''.join(random.choices("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", k=32))
+        bruit = ''.join(random.choices("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ", k=32))
         lignes.append(bruit)
 
     # Insertion du mot de passe dans une ligne contenant le mot "millionth"

@@ -32,7 +32,7 @@ Pour t'aider :
 Le mot de passe est présent en clair (ASCII) quelque part au milieu du fichier.
 
 ℹ️ :
-Essaie la commande 'strings' pour extraire uniquement les séquences lisibles.
+Trouve la commande pour extraire uniquement les séquences lisibles.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """

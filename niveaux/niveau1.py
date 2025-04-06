@@ -30,6 +30,7 @@ Un seul fichier est présent dans ton répertoire personnel… mais son nom peut
 
 ℹ️ :
 Essaie d'accéder au fichier en le ciblant avec un chemin explicite.
+
 Bonne chance, et n’oublie pas : ouvre les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
