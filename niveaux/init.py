@@ -6,7 +6,7 @@ import time
 def main():
     print("Initialisation des utilisateurs de niveau de CTF Hackaton…")
 
-    for niveau in range(0, 25):
+    for niveau in range(0, 34):
         print(f" → Création de l'utilisateur niveau{niveau}")
         CTF_lib.ajout_utilisateur(niveau)
     
