@@ -42,13 +42,13 @@ def main():
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
 
 L'objectif de ce niveau :
-Explorer une arborescence de dossiers pour trouver un fichier caché contenant le mot de passe.
+Explorer les dossiers pour trouver un fichier caché contenant le mot de passe.
 
 Pour t'aider :
-Le fichier que tu cherches est masqué (nom commençant par un point) et a une taille très spécifique.
+Le fichier que tu cherches est masqué et a une spécificité.
 
 ℹ️ :
-Utilise la commande 'find' avec les options -type f et -size 1033c pour repérer le bon fichier.
+Utilise une commande spécifique pour repérer le bon fichier.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """

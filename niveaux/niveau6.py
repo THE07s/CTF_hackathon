@@ -31,10 +31,10 @@ L'objectif de ce niveau :
 Retrouver un fichier contenant le mot de passe du niveau suivant. Ce fichier est bien caché quelque part dans le système.
 
 Pour t'aider :
-Ce fichier t'appartient partiellement : il est accessible grâce aux permissions de groupe.
+Ce fichier t'appartient ou pas...
 
 ℹ️ :
-Utilise la commande 'find' avec les options -user niveau7 -group niveau6 -size 33c pour le dénicher. Et redirige les erreurs si besoin avec '2>/dev/null'.
+Utilise une certaine commande pour le dénicher.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """

@@ -38,13 +38,13 @@ def main():
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
 
 L'objectif de ce niveau :
-Retrouver le bon fichier parmi dix, dans un dossier appelé 'jeSuisLa'. Un seul contient un mot de passe lisible.
+Retrouver le bon fichier dans le bon dossier .Un seul contient un mot de passe lisible.
 
 Pour t'aider :
 Certains fichiers ne sont pas lisibles directement, ou contiennent du contenu illisible.
 
 ℹ️ :
-Essaie la commande 'file' pour détecter le type de contenu d’un fichier. Les fichiers texte sont en ASCII.
+Détecter le type de contenu d’un fichier. Les fichiers texte sont particuliers.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """
