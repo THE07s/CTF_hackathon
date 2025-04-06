@@ -17,7 +17,7 @@ def main():
 
     # Mot de passe du niveau suivant
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
-    chemin_pass_suivant = f"/etc/bandit_pass/niveau25"
+    chemin_pass_suivant = f"/etc/niveau_mdps/niveau25"
     with open(chemin_pass_suivant, "w") as f:
         f.write(mdp_suivant + "\n")
     os.system(f"chmod 640 '{chemin_pass_suivant}'")
