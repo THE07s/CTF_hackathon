@@ -105,7 +105,7 @@ main()
 #         return True
 
 #     # Chemin du mot de passe
-#     mdp_path = f"/etc/bandit_pass/{next_user}"
+#     mdp_path = f"/etc/niveau_mdps/{next_user}"
 #     if not os.path.exists(mdp_path):
 #         print(f"❌ Mot de passe {next_user} manquant")
 #         return False
