@@ -2,8 +2,8 @@
 
 import os
 import CTF_lib
-# import niveau14
-import niveau15
+import niveau14
+# import niveau15
 import subprocess
 
 def main():
@@ -67,8 +67,8 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     CTF_lib.dossier_home_lecture(NIVEAU)
 
     # Lancer niveau suivant
-    # niveau14.main()
-    niveau15.main()
+    niveau14.main()
+    # niveau15.main()
 
 if __name__ == '__main__':
     main()
