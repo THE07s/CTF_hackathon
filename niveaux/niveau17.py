@@ -4,6 +4,8 @@ import os
 import random
 import CTF_lib
 import niveau18
+import string
+
 
 def main():
     NIVEAU = 17
@@ -18,7 +20,7 @@ def main():
 
     # Générer 50 lignes factices
     for _ in range(50):
-        lignes.append(CTF_lib.generer_mdp())
+        lignes.append(generer_ligne())
 
     # On choisit une ligne à remplacer
     index_modif = random.randint(5, 45)
@@ -62,6 +64,9 @@ Bonne chance, et n’oublie pas : ouvre les 👀
 
     # Lancer le niveau suivant
     niveau18.main()
+
+def generer_ligne():
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=32))
 
 if __name__ == '__main__':
     main()

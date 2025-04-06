@@ -3,6 +3,7 @@
 import os
 import CTF_lib
 import niveau22
+import string
 
 def main():
     NIVEAU = 21
@@ -15,7 +16,7 @@ def main():
     # Chemins utiles
     script_path = "/usr/bin/cronjob_bandit22.sh"
     cron_path = "/etc/cron.d/cronjob_bandit22"
-    tmp_file = f"/tmp/{CTF_lib.generer_mdp(32)}"
+    tmp_file = f"/tmp/{generer_nom_temp()}"
 
     # Script bash exécuté par le cron
     with open(script_path, "w") as f:
@@ -59,6 +60,9 @@ Bonne chance, et n’oublie pas : ouvre les 👀
 
     # Lancer niveau suivant
     niveau22.main()
+
+def generer_nom_temp():
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=32))
 
 if __name__ == '__main__':
     main()

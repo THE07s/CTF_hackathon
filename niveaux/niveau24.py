@@ -8,6 +8,7 @@ import CTF_lib
 
 def main():
     NIVEAU = 24
+    SUIVANT = 25
     PORT = 30002
     mdp_attendu = CTF_lib.get_mdp_hash(NIVEAU)
 
@@ -15,7 +16,7 @@ def main():
     code_correct = f"{random.randint(0, 9999):04d}"
 
     # Mot de passe du niveau suivant
-    mdp_suivant = CTF_lib.generer_mdp()
+    mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     chemin_pass_suivant = f"/etc/bandit_pass/niveau25"
     with open(chemin_pass_suivant, "w") as f:
         f.write(mdp_suivant + "\n")
