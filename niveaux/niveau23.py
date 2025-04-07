@@ -46,7 +46,7 @@ done
     os.system(f"chown root:root {cron_path}")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Placer un script dans un dossier spécial, pour qu’un cron l’exécute automatiquement et copie un mot de passe ailleurs.

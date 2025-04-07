@@ -35,7 +35,7 @@ def main():
     os.system(f"chmod 700 {dossier_jeSuisLa}")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Retrouver le bon fichier dans le bon dossier .Un seul contient un mot de passe lisible.

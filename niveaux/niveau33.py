@@ -8,9 +8,9 @@ def main():
     dossier = f"/home/niveau{NIVEAU}"
 
     # Message de fin uniquement
-    contenu_readme = f"""🎉 Bienvenue dans le niveau {NIVEAU} du CTF Hackaton 🎉
+    contenu_readme = f"""🎉 Bienvenue dans le niveau {NIVEAU} du CTF hackathon 🎉
 
-🥳 Bravo ! Tu es arrivé au bout du CTF Hackaton, en complétant les 33 niveaux.
+🥳 Bravo ! Tu es arrivé au bout du CTF hackathon, en complétant les 33 niveaux.
 Tu as démontré des compétences solides, de la curiosité et une belle persévérance.
 
 🎓 Tu repars avec :

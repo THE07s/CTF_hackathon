@@ -35,7 +35,7 @@ def main():
     os.remove(gzip_path)
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Décoder un fichier compressé et encodé en base64 pour obtenir le mot de passe du niveau suivant.

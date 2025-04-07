@@ -54,7 +54,7 @@ joueurs = [
     lambda: run_as("niveau30", "cat fichier.xz | xz -d -"),
     lambda: run_as("niveau31", "cat fichier_comprime | tar xOzf -"),
     lambda: run_as("niveau32", "ls -laR / 2>/dev/null | grep niveau33 | awk '{print $9}' | xargs cat 2>/dev/null"),
-    lambda: "🎉 BRAVO, vous avez terminé tous les niveaux du CTF Hackaton ! 🎉"
+    lambda: "🎉 BRAVO, vous avez terminé tous les niveaux du CTF hackathon ! 🎉"
 ]
 
 def main():

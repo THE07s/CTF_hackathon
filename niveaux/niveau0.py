@@ -13,7 +13,7 @@ def main():
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
 
     # Création du fichier readme avec instructions
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Comme tu l'as fais, tu dois lire le contenu de différents fichiers pour découvrir le mot de passe du niveau suivant.

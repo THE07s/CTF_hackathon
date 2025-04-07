@@ -23,7 +23,7 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Trouver une chaîne de texte lisible cachée dans un fichier qui contient principalement des données binaires.

@@ -36,7 +36,7 @@ def main():
     processus_listener.start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Envoyer ton mot de passe actuel à un serveur local qui écoute sur un port spécifique. Si c'est le bon, il te donnera le mot de passe suivant.

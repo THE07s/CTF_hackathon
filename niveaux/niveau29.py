@@ -36,7 +36,7 @@ def main():
     os.system(f"chmod 640 {chemin_chiffre}")
 
     # Readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Déchiffrer un fichier protégé par un mot de passe (un code PIN à 4 chiffres).

@@ -32,7 +32,7 @@ def main():
     os.system(f"chmod 4750 '{chemin_script}'")  # SUID sur script bash
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Utiliser un programme spécial pour exécuter une commande en tant que l’utilisateur du niveau suivant.

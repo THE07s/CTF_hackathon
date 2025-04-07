@@ -34,7 +34,7 @@ S'il vous plaît, soyez respectueux :
 --[ Plus d'informations ]--
 
 Pour plus d'informations concernant les wargames individuelles, visitez
-https://github.com/THE07s/CTF_hackaton
+https://github.com/THE07s/CTF_hackathon
 
 Si vous trouvez un bug, n'hésitez pas à signaler un problème sur le Github ci-dessus.
 

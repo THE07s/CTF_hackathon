@@ -1,10 +1,10 @@
-# Script d'initialisation globale de tous les utilisateurs de niveau de CTF Hackaton
+# Script d'initialisation globale de tous les utilisateurs de niveau de CTF hackathon
 import CTF_lib
 import niveau0
 import time
 
 def main():
-    print("Initialisation des utilisateurs de niveau de CTF Hackaton…")
+    print("Initialisation des utilisateurs de niveau de CTF hackathon…")
 
     for niveau in range(0, 34):
         print(f" → Création de l'utilisateur niveau{niveau}")

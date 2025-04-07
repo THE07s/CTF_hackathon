@@ -11,7 +11,7 @@ def main():
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
 
     # Fichier de log global
-    log_path = "/var/log/hackaton.log"
+    log_path = "/var/log/hackathon.log"
     os.makedirs("/var/log", exist_ok=True)
 
     # Fichier log avec mot de passe enregistré dedans
@@ -22,7 +22,7 @@ def main():
     os.system(f"chmod 640 {log_path}")
 
     # Fichier readme
-    readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Analyser les logs système pour retrouver un mot de passe écrit accidentellement.

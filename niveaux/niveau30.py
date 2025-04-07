@@ -25,7 +25,7 @@ def main():
     threading.Thread(target=daemon_fichier, daemon=True).start()
 
     # Readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Repérer un processus qui garde un fichier temporaire ouvert contenant le mot de passe du niveau suivant.

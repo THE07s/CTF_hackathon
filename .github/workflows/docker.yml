@@ -33,5 +33,5 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ghcr.io/the07s/ctf-hackaton:latest
+          tags: ghcr.io/the07s/ctf-hackathon:latest
           platforms: linux/arm64

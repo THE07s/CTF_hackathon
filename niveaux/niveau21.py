@@ -36,7 +36,7 @@ echo '{mdp_suivant}' > {tmp_file}
     os.system("chmod 644 " + cron_path)
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Trouver un mot de passe laissé temporairement dans un fichier, généré automatiquement par une tâche planifiée.

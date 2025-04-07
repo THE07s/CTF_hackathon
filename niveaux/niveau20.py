@@ -40,7 +40,7 @@ def main():
     os.system(f"chmod 4750 '{SCRIPT}'")  # SUID script
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Utiliser un binaire spécial pour communiquer avec un port local via TCP.

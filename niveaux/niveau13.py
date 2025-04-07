@@ -44,7 +44,7 @@ def main():
     os.rmdir(key_dir)
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Utiliser une clé SSH privée pour te connecter au niveau suivant.

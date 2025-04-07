@@ -20,7 +20,7 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme explicatif
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Dans ce niveau, tu dois trouver le mot de passe caché dans un fichier au nom un peu particulier.

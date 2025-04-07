@@ -33,7 +33,7 @@ fi
     os.system(f"chown root:root {cron_path}")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Profiter d’une race condition pour faire lire au système un fichier auquel tu n’as pas accès.

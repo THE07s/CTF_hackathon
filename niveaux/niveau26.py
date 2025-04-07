@@ -35,7 +35,7 @@ def main():
     threading.Thread(target=lancer_http, daemon=True).start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Trouver un fichier caché sur un serveur HTTP local pour obtenir le mot de passe du niveau suivant.

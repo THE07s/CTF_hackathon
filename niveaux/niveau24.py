@@ -50,7 +50,7 @@ def main():
     threading.Thread(target=server, daemon=True).start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Contacter un serveur TCP local, lui envoyer le bon mot de passe et un code PIN à 4 chiffres.

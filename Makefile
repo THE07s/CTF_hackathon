@@ -1,8 +1,8 @@
-# Makefile – CTF Hackaton (build + run)
+# Makefile – CTF hackathon (build + run)
 
-IMAGE := ctf-hackaton
+IMAGE := ctf-hackathon
 TAG := latest
-CONTAINER := ctf_hackaton_ctf
+CONTAINER := ctf_hackathon_ctf
 DOCKERFILE := Dockerfile
 CONTEXT := .
 

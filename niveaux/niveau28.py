@@ -25,7 +25,7 @@ def main():
     os.system(f"chmod 640 {chemin_fichier}")  # -rw-r-----
 
     # Readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
+    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
 Lire un fichier dont l’accès est limité à un groupe UNIX spécifique.
