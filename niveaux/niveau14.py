@@ -3,6 +3,7 @@
 import os
 import socket
 import threading
+import multiprocessing
 import CTF_lib
 import niveau15
 
@@ -30,8 +31,9 @@ def main():
                     else:
                         conn.sendall(b"Wrong password\n")
 
-    thread = threading.Thread(target=listener, daemon=True)
-    thread.start()
+    # Lancer le serveur dans un processus séparé
+    processus_listener = multiprocessing.Process(target=listener)
+    processus_listener.start()
 
     # Fichier readme
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.

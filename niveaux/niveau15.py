@@ -4,6 +4,7 @@ import os
 import ssl
 import socket
 import threading
+import multiprocessing
 import CTF_lib
 import niveau16
 
@@ -39,13 +40,16 @@ def main():
                         data = ssl_conn.recv(1024).decode().strip()
                         if data == mdp_actuel:
                             ssl_conn.sendall((mdp_suivant + "\n").encode())
+                            ssl_conn.shutdown(socket.SHUT_WR)  # Forcer l'envoi complet
                         else:
                             ssl_conn.sendall(b"Wrong password\n")
+                            ssl_conn.shutdown(socket.SHUT_WR)
                     except Exception:
                         pass
 
-    thread = threading.Thread(target=ssl_server, daemon=True)
-    thread.start()
+    # Lancer le serveur SSL dans un processus séparé
+    processus_ssl = multiprocessing.Process(target=ssl_server)
+    processus_ssl.start()
 
     # Fichier readme
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF Hackaton.
@@ -57,7 +61,7 @@ Pour t'aider :
 Le serveur écoute sur le port {PORT} et attend que tu lui envoies ton mot de passe actuel.
 
 ℹ️ :
-Utilise la commande : <à trouver> localhost:<numéro de port>
+Utilise la commande : <à trouver> localhost:{PORT}
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """
@@ -70,7 +74,7 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     # Restreint le home
     CTF_lib.dossier_home_lecture(NIVEAU)
 
-    # Lancer niveau suivant
+    # Lancer le niveau suivant
     niveau16.main()
 
 if __name__ == '__main__':
