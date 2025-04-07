@@ -19,12 +19,12 @@ def main():
     os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} '{chemin_readme}'")
     os.system(f"chmod 640 '{chemin_readme}'")
 
-    # Forcer un exit uniquement si aucune commande n'est fournie via SSH
+    # Forcer un exit uniquement si le shell est interactif
     chemin_bashrc = os.path.join(dossier_home, ".bashrc")
     with open(chemin_bashrc, "w") as f:
-        f.write('''if [ -z "$SSH_ORIGINAL_COMMAND" ]; then
-    exit
-fi
+        f.write('''case "$-" in
+    *i*) exit;;
+esac
 ''')
     os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} '{chemin_bashrc}'")
     os.system(f"chmod 644 '{chemin_bashrc}'")
