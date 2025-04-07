@@ -22,7 +22,10 @@ def main():
     # Forcer un exit automatique à chaque connexion SSH
     chemin_bashrc = os.path.join(dossier_home, ".bashrc")
     with open(chemin_bashrc, "w") as f:
-        f.write("exit\n")
+        f.write('''if [[ $- == *i* ]]; then
+    exit
+fi
+''')
 
     os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} '{chemin_bashrc}'")
     os.system(f"chmod 644 '{chemin_bashrc}'")

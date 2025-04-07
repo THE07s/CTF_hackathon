@@ -74,4 +74,4 @@ WORKDIR /app
 ENV LANG=C.UTF-8
 
 # Spécifier la commande par défaut
-CMD ["sh", "-c", "python3 init.py && /usr/sbin/sshd -D"]
+CMD ["sh", "-c", "python3 init.py & /usr/sbin/sshd -D"]
