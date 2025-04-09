@@ -36,16 +36,23 @@ def main():
     threading.Thread(target=lancer_http, daemon=True).start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Trouver un fichier caché sur un serveur HTTP local pour obtenir le mot de passe du niveau suivant.
+Objectif:
+Un serveur HTTP local tourne en secret, sur le port {PORT}. \
+Il contient un fichier caché, bien protégé… mais à celui ou celle qui saura deviner son nom, il offrira le mot de passe du niveau suivant.\
+Pourras-tu le trouver? 
 
 Pour t'aider :
-Un serveur HTTP est actif sur le port {PORT}, mais ne liste pas ses fichiers. Tu dois deviner l’URL correcte.
+Le serveur est actif, et tu peux t’y connecter avec un navigateur ou en ligne de commande.\
+Mais il ne liste pas ses fichiers, même si tu visites la racine.\
+Pour progresser, tu vas devoir deviner le nom exact du fichier qui contient le mot de passe, puis l’interroger directement.
 
 ℹ️ :
-Trouve la bonne commande.
+Pense à des noms de fichiers souvent oubliés ou sauvegardés par erreur…(par exemple : hidden.txt, motdepasse.html, index.html.bak, etc.)\
+Une commande te permet d’envoyer une requête HTTP silencieuse, et de vérifier si le fichier existe ou non\
+Teste plusieurs noms jusqu’à tomber sur le bon : quand le bon fichier sera trouvé, le serveur te répondra.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """

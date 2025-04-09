@@ -50,19 +50,29 @@ def main():
     threading.Thread(target=server, daemon=True).start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Contacter un serveur TCP local, lui envoyer le bon mot de passe et un code PIN à 4 chiffres.
+Objectif:
+Un serveur TCP local se tient prêt à te donner le mot de passe du niveau suivant…\
+Contacte le.\
+Mais attention... il ne se contente pas de ton mot de passe : il veut une preuve supplémentaire.\
+Un code PIN à 4 chiffres, et pas un de plus.
 
 Pour t'aider :
-Le serveur écoute sur le port {PORT} et attend une ligne contenant :
-<mot_de_passe> <PIN>
+LLe serveur écoute sur le port {PORT}, ici même sur localhost. \
+Il attend une seule ligne, au format suivant : <mot_de_passe> <PIN>\
+Tu dois lui envoyer cette ligne, et trouver le bon code PIN. \
+Si tu te trompes, il répond « Wrong »… mais si tu vises juste, il te livrera le mot de passe du niveau suivant.
 
 ℹ️ :
-Essaie d’écrire un script bash ou python.
+Prépare une boucle qui teste chaque PIN possible de 0000 à 9999\
+Envoie à chaque fois le mot de passe actuel suivi du code PIN testé\
+Interprète la réponse du serveur : dès qu’elle change, tu tiens le bon\
+Tu peux écrire un petit script en bash ou en python pour automatiser l’envoi
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas :Chaque tentative te rapproche de la vérité. Sois patient·e. Sois méthodique. \
+Et surtout… ouvre grand les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

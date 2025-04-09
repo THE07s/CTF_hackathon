@@ -33,24 +33,31 @@ chmod 644 /tmp/{MYTARGET}
     # Cron
     cron_path = f"/etc/cron.d/cronjob_niveau{SUIVANT}"
     with open(cron_path, "w") as f:
-        f.write(f"""* * * * * niveau{SUIVANT} {script_path} &> /dev/null
+        f.write(f"""* * * * * root {script_path} &> /dev/null
 """)
     os.system(f"chmod 644 {cron_path}")
     os.system(f"chown root:root {cron_path}")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Retrouver un fichier temporaire généré par un cron job à partir d’un hash md5.
+Objectif:
+Le mot de passe que tu cherches est bien là… mais son fichier est masqué. Il ne porte pas un nom classique : il est généré à partir d’un hash.\
+Ton rôle ici? C'est de retrouver ce fichier temporaire.\
+Ce niveau te met face à une énigme logique. Pas de hasard. Juste de la précision, et une touche de cryptographie.
 
 Pour t'aider :
-Le script cron utilise 'whoami' 
+Le script planifié que tu as analysé précédemment crée un fichier dans /tmp.\
+Mais pas avec un nom simple : il utilise une fonction de hachage, à partir d’une chaîne de texte construite dynamiquement, et qui inclut une commande système bien connue…
 
 ℹ️ :
-Trouve la bonne commande
+Le nom du fichier est le résultat d’un hash md5\
+La phrase hashée inclut le nom de l’utilisateur cible, inséré dynamiquement via une commande (whoami)\
+Reproduis exactement la chaîne utilisée dans le script, applique le bon hachage, puis cherche le fichier dans /tmp/
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Ce n’est pas un fichier caché. C’est un fichier chiffré… dans son nom.\
+Reconstitue la formule. Dévoile le nom. Ouvre les 👀. 
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

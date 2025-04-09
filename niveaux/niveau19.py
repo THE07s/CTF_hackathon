@@ -41,15 +41,23 @@ chmod 644 {tmp_file}
 Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 Objectif:
-Trouver un mot de passe laissé temporairement dans un fichier, généré automatiquement par une tâche planifiée.
+Un mot de passe est généré automatiquement par un processus planifié.\
+Il est stocké temporairement, puis écrasé. \
+Ton but, cette fois, n’est pas encore de le lire… mais de remonter à la source : le script responsable de sa création.
 
 Pour t'aider :
-Un cron job s'exécute toutes les minutes pour l’utilisateur niveau{SUIVANT}.
+Un cron job s’exécute chaque minute pour l’utilisateur du niveau suivant.\
+Il lance un script précis, placé dans un coin stratégique du système.\
+Si tu veux retrouver le mot de passe plus tard, tu dois d’abord comprendre exactement ce que ce script fait.
 
 ℹ️ :
-Cherche dans le bon dossier et vois ce que contient le script lancé
+Localise le script lancé par le cron job.\
+Ouvre-le et analyse son contenu.\
+Repère les chemins, les commandes, les noms de fichiers générés…\
+Tu es ici pour observer, pas encore pour agir.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Le vrai hacker ne fonce pas tête baissée. Il lit. Il comprend. Il anticipe.\
+Le fichier temporaire viendra après… mais pour l’instant, ouvre les yeux… et le script. 👀📜
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:
