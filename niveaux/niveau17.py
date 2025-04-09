@@ -83,16 +83,23 @@ def main():
     contenu_readme = f"""\
 Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Utiliser un programme spécial pour exécuter une commande en tant que l’utilisateur du niveau suivant.
+Objectif:
+Un outil spécial t’a été confié. Il ne ressemble à rien de ce que tu as vu jusqu’ici. \
+Et pourtant… c’est lui qui te permettra d’atteindre le niveau supérieur.\
+Avec lui, tu vas pouvoir exécuter une commande comme si tu étais déjà dans la peau du prochain utilisateur.
 
 Pour t'aider :
-Trouve le programme dans ton home et exécute-le en passant une commande (par exemple, pour lire le mot de passe).
+Dans ton dossier personnel se trouve un exécutable mystérieux. C’est la clé. \
+Si tu l’utilises correctement, il exécutera la commande que tu lui donnes, avec les privilèges du niveau suivant.
 
 ℹ️ :
-Trouve le mot de passe du niveau suivant, les mot de passe sont stokés dans /etc/...
+Repère ce fichier dans ton répertoire personnel.\
+Lance-le en lui passant une commande claire, simple, directe.\
+Ton objectif ? Lire un fichier contenant le mot de passe… et tu sais où ils se trouvent tous, n’est-ce pas ? 😉
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Ce niveau ne demande pas d’exploiter une faille… il te demande d’utiliser un privilège.\
+Tu as le droit d’entrer… mais encore faut-il que tu saches comment frapper.\
+Regarde bien dans ton environnement. Et surtout… ouvre les 👀. 
 """
     chemin_readme = os.path.join(dossier, "readme")
     with open(chemin_readme, "w") as f:

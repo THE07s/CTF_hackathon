@@ -6,6 +6,7 @@ import time
 import re
 
 LOG_FILE = "/tmp/validation.log"
+PLACEHOLDER_PASSWORD = "$()"
 
 def log_message(message):
     """Écrit le message dans le fichier de log en mode append."""
@@ -83,7 +84,7 @@ validation_steps = {
     18: "nc -lvp 12345 & sleep 1 && ./suconnect 12345 && pkill -f \"nc -lvp 12345\"",
     19: "cat /usr/bin/cronjob_niveau20.sh",
     20: "echo 'I am user niveau21' | md5sum | cut -d ' ' -f 1 | xargs -I{} cat /tmp/{}",
-    21: "for i in $(seq -w 0000 9999); do out=$(echo 'PLACEHOLDER_PASSWORD' $i | nc -w 1 localhost 30002 2>/dev/null); [[ $out != Wrong ]] && echo $out && break; done",
+    21: "for i in $(seq -w 0000 9999); do out=$(echo \"$(cat /etc/niveau_mdps/niveau21) $i\" | nc -w 1 localhost 30002 2>/dev/null); [[ $out != Wrong ]] && echo $out && break; done",
     22: "for f in hidden.txt motdepasse.html index.html.bak; do curl -fs localhost:8080/$f && break; done",
     23: "base64 -d donnees.mystere | gunzip",
     24: "cat acces_groupe.txt",

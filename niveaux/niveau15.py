@@ -56,15 +56,23 @@ def main():
 Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 Objectif:
-Communiquer avec un serveur local sécurisé via SSL pour obtenir le mot de passe du niveau suivant.
+Un serveur sécurisé t’attend, dissimulé derrière une connexion SSL. Il est silencieux, vigilant… mais prêt à s’ouvrir à celui qui saura lui parler dans le bon langage.\
+Ton mot de passe actuel est la clé. \
+Ta mission : le transmettre à ce serveur, et en retour, recevoir celui du niveau suivant.
 
 Pour t'aider :
-Le serveur écoute sur le port {PORT} et attend que tu lui envoies ton mot de passe actuel.
+Le serveur est bien en place, à l’écoute sur le port {PORT}, ici même, sur localhost.\
+Mais il ne s’agit pas d’une simple communication texte : tu dois établir une vraie connexion SSL, puis lui envoyer exactement ton mot de passe, sans retour à la ligne ni espace inutile.
 
 ℹ️ :
-Utilise la commande : <à trouver> localhost:{PORT}
+Commence par récupérer ton mot de passe actuel.\
+Prépare-le pour l’envoyer tel quel, sans saut de ligne parasite.\
+Puis établis une connexion SSL silencieuse avec le serveur.\
+Une fois connecté, envoie directement ton mot de passe, d’un seul bloc, pour qu’il soit bien compris
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Ce niveau ne teste pas ta force brute, mais ta précision.\
+Lis. Formate. Transmets. Et le serveur, s’il reconnaît ta sincérité… t’ouvrira le chemin.\
+Ouvre bien les 👀. Et entre discrètement. 👁️‍🗨️🔓
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

@@ -37,9 +37,10 @@ chmod 644 {tmp_file}
     os.system("chmod 644 " + cron_path)
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
+Objectif:
 Trouver un mot de passe laissé temporairement dans un fichier, généré automatiquement par une tâche planifiée.
 
 Pour t'aider :

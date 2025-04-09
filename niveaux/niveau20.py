@@ -9,6 +9,8 @@ def main():
     NIVEAU = 20
     SUIVANT = 21
 
+    MYTARGET = f"$(echo I am user niveau{SUIVANT} | md5sum | cut -d ' ' -f 1)"
+
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
 
@@ -21,12 +23,9 @@ def main():
     script_path = f"/usr/bin/cronjob_niveau{SUIVANT}.sh"
     with open(script_path, "w") as f:
         f.write(f"""#!/bin/bash
-
-mytarget=$(echo I am user niveau{SUIVANT} | md5sum | cut -d ' ' -f 1)
-
-echo "Copying passwordfile /etc/niveau_mdps/niveau{SUIVANT} to /tmp/$mytarget"
-cat /etc/niveau_mdps/niveau{SUIVANT} > /tmp/$mytarget
-chmod 644 /tmp/$mytarget
+echo "Copying passwordfile /etc/niveau_mdps/niveau{SUIVANT} to /tmp/{MYTARGET}"
+cat /etc/niveau_mdps/niveau{SUIVANT} > /tmp/{MYTARGET}
+chmod 644 /tmp/{MYTARGET}
 """)
     os.system(f"chmod 755 {script_path}")
     os.system(f"chown root:root {script_path}")

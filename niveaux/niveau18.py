@@ -40,18 +40,28 @@ def main():
     os.system(f"chmod 4750 '{SCRIPT}'")  # SUID script
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Utiliser un binaire spécial pour communiquer avec un port local via TCP.
+Objectif:
+Un binaire spécial est entre tes mains. Il ne prend pas de mot de passe en argument. \
+Il le connaît déjà. Et il est prêt à le transmettre... mais à une seule condition :\
+Tu dois être prêt à l’écouter. Littéralement.\
+Il te faufra l'utiliser pour communiquer avec un port local via TCP.
 
 Pour t'aider :
-Tu peux écouter un port avec : nc -lvp <numéro du port>
+Tu dois ouvrir un port sur ta machine. Le programme va s’y connecter, envoyer automatiquement le mot de passe, et attendre une réponse.\
+Si tu captes bien ce qu’il envoie, tu auras le mot de passe du niveau suivant.
 
 ℹ️ :
-Le mot de passe est automatiquement envoyé par le programme, et le serveur répond s’il est correct.
+Ouvre un port en écoute sur localhost.\
+Lance ensuite le programme, en lui indiquant le port à utiliser.\
+Tu devrais voir apparaître quelque chose… peut-être le mot de passe lui-même, ou une réponse du serveur si le mot est correct.\
+Une fois la communication terminée, pense à fermer proprement ton écouteur.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Tu ne cherches pas un mot de passe. Il vient à toi.\
+Mais à toi de tendre l’oreille.\
+Sois le serveur. Sois prêt. Et surtout… ouvre les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:
