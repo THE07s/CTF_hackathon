@@ -22,11 +22,10 @@ def main():
     with open(script_path, "w") as f:
         f.write(f"""#!/bin/bash
 
-myname="niveau{SUIVANT}"
-mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+mytarget=$(echo I am user niveau{SUIVANT} | md5sum | cut -d ' ' -f 1)
 
-echo "Copying passwordfile /etc/niveau_mdps/$myname to /tmp/$mytarget"
-cat /etc/niveau_mdps/$myname > /tmp/$mytarget
+echo "Copying passwordfile /etc/niveau_mdps/niveau{SUIVANT} to /tmp/$mytarget"
+cat /etc/niveau_mdps/niveau{SUIVANT} > /tmp/$mytarget
 chmod 644 /tmp/$mytarget
 """)
     os.system(f"chmod 755 {script_path}")

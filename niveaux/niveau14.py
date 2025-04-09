@@ -36,18 +36,26 @@ def main():
     processus_listener.start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Envoyer ton mot de passe actuel à un serveur local qui écoute sur un port spécifique. Si c'est le bon, il te donnera le mot de passe suivant.
+Objectif:
+Un serveur local t’attend… mais il n’accepte de parler qu’à ceux qui connaissent le bon mot de passe. \
+Ton rôle ? \
+Lui envoyer ton mot de passe actuel, et s’il est correct, il te remettra le précieux sésame pour le niveau suivant.
 
 Pour t'aider :
-Le serveur écoute sur le port {PORT} de localhost. Il attend que tu lui envoies le bon mot de passe.
+Le serveur écoute sur le port {PORT} de localhost. \
+Il est là, silencieux, prêt à recevoir une seule ligne de texte : ton mot de passe actuel.
+Envoie-lui ce qu’il attend, et il t’ouvrira la voie.
 
 ℹ️ :
-Utilise une commande comme : <...> localhost <numéro de port> ou echo 'motdepasse' | <...><numéro de port>
+Tu peux préparer ton mot de passe dans une commande, puis le rediriger vers le bon port. \
+Le but est de lui envoyer le mot juste, au bon endroit, d’un seul coup.
+Pas besoin de taper à la main : une commande peut faire tout le travail pour toi, du moment qu’elle combine lecture du mot de passe et envoi au bon port.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Le serveur est muet... mais il écoute.\
+Envoie le bon mot, et tu entendras sa réponse
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

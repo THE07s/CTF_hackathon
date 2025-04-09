@@ -48,15 +48,23 @@ def main():
 Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 Objectif:
-Utiliser une clé SSH privée pour te connecter au niveau suivant.
+Tu n’as cette fois aucun mot de passe entre les mains. \
+Mais ce n’est pas grave… car tu possèdes bien plus puissant : une clé d’accès privée.
+Ta mission ? L’utiliser pour prendre le contrôle du compte niveau14 et passer à l’étape suivante.
+
 
 Pour t'aider :
-Un fichier contient une clé d'identification valide.
+Quelque part dans tes fichiers, tu trouveras une clé d’authentification privée. \
+Ce n’est pas un mot de passe classique, c’est un fichier spécial qui te permettra d’ouvrir la porte sans frapper.
+Une fois trouvée, utilise-la pour établir une connexion sécurisée avec l’utilisateur cible.
 
 ℹ️ :
-Utilise la commande : ssh <à compléter> niveau14@localhost
+La connexion se fait en local, sans passer par Internet. Tu n’as qu’à préciser que tu veux te connecter à localhost, en tant qu’utilisateur niveau14, en t’identifiant via un fichier. \
+Tu peux compléter cette commande à ta façon.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, agent.\
+Ce niveau ne demande pas de force brute, seulement de l’élégance et de la précision.\
+Ouvre bien les yeux 👀… et la connexion.
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

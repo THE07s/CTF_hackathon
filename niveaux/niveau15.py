@@ -52,9 +52,10 @@ def main():
     processus_ssl.start()
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
+Objectif:
 Communiquer avec un serveur local sécurisé via SSL pour obtenir le mot de passe du niveau suivant.
 
 Pour t'aider :

@@ -39,10 +39,13 @@ def main():
     os.system(f"chmod 640 {dossier}/passwords.*")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Identifier une modification entre deux fichiers pour récupérer le mot de passe du niveau suivant.
+Objectif:
+Deux fichiers. Deux listes. Deux versions d’un même secret… mais quelque chose a changé.\
+Ton rôle ? Trouver l’intrus. L’élément nouveau. Le mot interdit qui s’est glissé dans la liste.\
+Ce mot unique, c’est le mot de passe du prochain niveau.
 
 Pour t'aider :
 2 fichiers sont presque identiques, à une chose prêt.
