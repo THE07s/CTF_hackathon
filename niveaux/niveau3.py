@@ -23,18 +23,21 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Trouver un fichier caché. Ce fichier contient le mot de passe du niveau suivant.
+Objectif:
+ Il te faut trouver un fichier bien caché...\
+ C'est lui qui referme le mot de passe pour accéder au niveau suivant. 
 
 Pour t'aider :
-Ce fichier n’apparaît bizarrement pas. Il est discret, mais bien là.
+Etrangement, tu ne le vois pas...Et pourtant, il est présent. \
+Il est simplement discret, mais bien là.
 
 ℹ️ :
-Utilise une commande spéciale pour le faire apparaître.
+Parmi les commandes: ls , cd , cat , file , du , find...seule une t'aidera à le faire apparaître
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : ouvre grands les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

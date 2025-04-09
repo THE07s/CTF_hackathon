@@ -4,10 +4,11 @@ import os
 import random
 import CTF_lib
 import subprocess
+import niveau26
 
 def main():
-    NIVEAU = 29
-    SUIVANT = 30
+    NIVEAU = 25
+    SUIVANT = 26
 
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     dossier = f"/home/niveau{NIVEAU}"
@@ -60,8 +61,7 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     CTF_lib.dossier_home_lecture(NIVEAU)
 
     # Lancer niveau suivant
-    import niveau30
-    niveau30.main()
+    niveau26.main()
 
 if __name__ == '__main__':
     main()

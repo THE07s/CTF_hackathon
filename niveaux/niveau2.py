@@ -21,18 +21,21 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Trouver un fichier contenant le mot de passe du niveau suivant… mais ce fichier a un nom un peu délicat à manipuler.
+Objectif:
+Trouve un fichier contenant le mot de passe du niveau suivant…\
+Mais fais gaffe car ce fichier est assez délicat à manipuler.
 
 Pour t'aider :
-Le nom du fichier est spécial. Fais attention à bien le cibler.
+Le nom du fichier est quelque peu atypique. \
+Il te faudra alors être très précis pour le débusquer.
 
 ℹ️ :
-Regarde bien...
+Sers-toi de ces commandes pour t'aider à avancer: ls , cd , cat , file , du , find
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : ouvre grands les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

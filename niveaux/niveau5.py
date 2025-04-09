@@ -39,18 +39,27 @@ def main():
         os.system(f"chmod 700 '{sous_dossier}'")
 
     # Fichier readme explicatif
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Explorer les dossiers pour trouver un fichier caché contenant le mot de passe.
+Objectif:
+Pars en exploration ! Un fichier bien caché t’attend quelque part dans l’arborescence… \
+Il renferme le précieux mot de passe pour passer au niveau suivant. \
+À toi de le débusquer !
 
 Pour t'aider :
-Le fichier que tu cherches est masqué et a une spécificité.
+Le fichier que tu recherches est différent des autres… Il est masqué, et possède une caractéristique unique. \
+Retiens bien ceci : le fichier contenant le mot de passe est quelque part sous le répertoire inhere et il répond à tous les critères suivants :\
+Il est lisible par un humain\
+Il fait exactement 1033 octets\
+Il n’est pas exécutable\
+Alors, garde ton esprit en alerte parce que chaque détail compte.
 
 ℹ️ :
-Utilise une commande spécifique pour repérer le bon fichier.
+Une commande spéciale entre ls, cd, cat, file, du, find, te permettra de révéler ce que l’œil ne voit pas et répérer le bon fichier. \
+Mais sauras-tu t’en servir au bon moment ?
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : les secrets aiment se cacher là où personne ne regarde 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

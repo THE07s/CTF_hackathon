@@ -20,18 +20,20 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme explicatif
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Dans ce niveau, tu dois trouver le mot de passe caché dans un fichier au nom un peu particulier.
+Objectif:
+Trouve le mot de passe caché dans un fichier au nom quelque peu surprenant.
 
 Pour t'aider :
-Un seul fichier est présent dans ton répertoire personnel… mais son nom peut causer des surprises.
+Un seul fichier se trouve dans ton répertoire personnel. \
+Mais attention, son nom pourrait bien te jouer des tours. 
 
-ℹ️ :
-Essaie d'accéder au fichier en le ciblant avec un chemin explicite.
+ℹ️ : \
+Ces commandes pourront t'aider: ls , cd , cat , file , du , find
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et surtout : ouvre grands les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:
@@ -47,3 +49,4 @@ Bonne chance, et n’oublie pas : ouvre les 👀
 
 if __name__ == '__main__':
     main()
+ 

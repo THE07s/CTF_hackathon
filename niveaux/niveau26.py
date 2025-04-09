@@ -1,65 +1,47 @@
-# Script d'initialisation pour l'utilisateur niveau26
+# Script d'initialisation pour l'utilisateur niveau33
 
 import os
-import random
-import threading
-from http.server import HTTPServer, SimpleHTTPRequestHandler
 import CTF_lib
-import niveau27
 
 def main():
     NIVEAU = 26
-    PORT = 8080
-    mdp_suivant = CTF_lib.get_mdp_hash(27)
-    CTF_lib.ecrire_fichier_mdp(27, mdp_suivant)
+    dossier = f"/home/niveau{NIVEAU}"
 
-    dossier_http = f"/tmp/http_lvl{NIVEAU}"
-    os.makedirs(dossier_http, exist_ok=True)
+    # Message de fin uniquement
+    contenu_readme = f"""🎉 Bienvenue dans le niveau {NIVEAU} du CTF hackathon 🎉
 
-    # Nom du fichier caché
-    nom_fichier = random.choice(["hidden.txt", "motdepasse.html", "index.html.bak"])
-    chemin_fichier = os.path.join(dossier_http, nom_fichier)
+🥳 Bravo ! Tu es arrivé au bout du CTF hackathon, en complétant les {NIVEAU + 1} niveaux.
+Tu as démontré des compétences solides, de la curiosité et une belle persévérance.
 
-    with open(chemin_fichier, "w") as f:
-        f.write(mdp_suivant + "\n")
+🎓 Tu repars avec :
+- Une meilleure maîtrise de Linux
+- Une meilleure compréhension des failles courantes
+- Une belle satisfaction personnelle 😎
 
-    class CustomHandler(SimpleHTTPRequestHandler):
-        def log_message(self, format, *args):
-            pass  # silence logs
+Merci d’avoir joué ❤️
 
-    def lancer_http():
-        os.chdir(dossier_http)
-        httpd = HTTPServer(('0.0.0.0', PORT), CustomHandler)
-        httpd.serve_forever()
-
-    threading.Thread(target=lancer_http, daemon=True).start()
-
-    # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
-
-L'objectif de ce niveau :
-Trouver un fichier caché sur un serveur HTTP local pour obtenir le mot de passe du niveau suivant.
-
-Pour t'aider :
-Un serveur HTTP est actif sur le port {PORT}, mais ne liste pas ses fichiers. Tu dois deviner l’URL correcte.
-
-ℹ️ :
-Trouve la bonne commande.
-
-Bonne chance, et n’oublie pas : ouvre les 👀
+🐧 À bientôt pour de nouveaux défis !
 """
-    chemin_readme = f"/home/niveau{NIVEAU}/readme"
-    with open(chemin_readme, "w") as f:
+    readme_path = os.path.join(dossier, "readme")
+    with open(readme_path, "w") as f:
         f.write(contenu_readme)
 
-    os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} '{chemin_readme}'")
-    os.system(f"chmod 640 '{chemin_readme}'")
+    os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} {readme_path}")
+    os.system(f"chmod 640 {readme_path}")
 
     # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
 
-    # Lancer niveau suivant
-    niveau27.main()
+    # Afficher dans le terminal les mots de passe de tous les niveaux 0 à 33
+    print(f"\n=== Liste des mots de passe (niveau 0 à {NIVEAU + 1}) ===")
+    for niv in range(0, NIVEAU + 1):
+        chemin_mdp = f"/etc/niveau_mdps/niveau{niv}"
+        try:
+            with open(chemin_mdp, "r") as f:
+                mdp = f.read().strip()
+            print(f"Niveau {niv} : {mdp}")
+        except Exception as e:
+            print(f"Erreur lors de la lecture du niveau {niv} : {e}")
 
 if __name__ == '__main__':
     main()

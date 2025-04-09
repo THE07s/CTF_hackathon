@@ -24,7 +24,7 @@ def main():
 
     # Insertion du mot de passe dans une ligne contenant le mot "millionth"
     index = random.randint(100, 9900)
-    lignes[index] = f"millionth        {mdp_suivant}"
+    lignes[index] = f"millionth        {mdp_suivant}        "
 
     with open(chemin_fichier, "w") as f:
         f.write("\n".join(lignes) + "\n")
@@ -33,18 +33,24 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Trouver le mot de passe caché quelque part dans les différents fichiers.
+Objectif:
+Un mot de passe est dissimulé quelque part au milieu de fichiers pleins de données… \
+Ton but : repérer la bonne ligne et mettre la main sur la clé du niveau suivant.
 
 Pour t'aider :
-Ce fichier contient une ligne unique avec le mot 'millionth' suivi du mot de passe.
+Le fichier que tu cherches contient une seule ligne bien spéciale : elle contient le mot millionth, juste à côté du mot de passe que tu convoites.\
+Le mot de passe se trouve dans le fichier data.txt, juste à côté du mot millionth.\
+Rien de plus, rien de moins.
 
 ℹ️ :
-Utilise une commande pour trouver rapidement la bonne ligne.
+Tu n’as pas besoin de tout lire… il suffit de trouver LA ligne. \
+Une commande bien choisie entre man, grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd, te permettra de repérer ce mot en un clin d'œil.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : parfois, une simple ligne change tout. \
+Ouvre les 👀 et laisse parler ton flair💥.
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

@@ -33,18 +33,24 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme explicatif
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Retrouver un mot unique dans une grande liste de mots contenus dans un fichier.
+Objectif:
+Un mot unique, seul au milieu de la foule, t’attend dans un fichier rempli de doublons.\
+Ce mot, c’est le mot de passe pour le niveau suivant. À toi de le retrouver!
 
 Pour t'aider :
-Un seul mot est présent une seule fois dans tout le fichier. Tous les autres sont en double.
+Parmi tous les mots du fichier, un seul apparaît une seule fois. Tous les autres sont présents en double…\
+Ce mot unique est ta clé, et il n’attend que toi.\
+Comment faire?...\
+Commence par trier le fichier, puis filtre intelligemment : tu verras, la vérité saute aux yeux quand on sait où regarder.
 
 ℹ️ :
-Trie le fichier puis filtre pour repérer la ligne unique.
+Le mot de passe est stocké dans le fichier data.txt, et se trouve sur la seule ligne qui n’apparaît qu’une seule fois.
+Aide toi de ces commandes: grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : ce n'est pas le nombre qui compte mais ce qui sort de l'ordinaire...ouvre les 👀 et trouve l'intrus.
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

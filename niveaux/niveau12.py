@@ -13,7 +13,7 @@ def main():
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
 
-    dossier_tmp = f"/tmp/bandito_lvl12"
+    dossier_tmp = f"/tmp/niveau_12"
     os.makedirs(dossier_tmp, exist_ok=True)
 
     current_file = os.path.join(dossier_tmp, "data.txt")
@@ -45,18 +45,29 @@ def main():
     os.system(f"chmod 640 '{final_hex_path}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Décoder et décompresser plusieurs couches de données cachées dans un fichier.
+Objectif:
+Un fichier. Une énigme. Un labyrinthe.\
+Tu es face à une forteresse numérique, protégée par couches sur couches de compression et de codage.\
+Et tout en bas… bien dissimulé… repose le mot de passe. Ta clé. Ton destin.\
+Tu dois décoder et décompresser les couches de données cachées dans le fichier.
 
 Pour t'aider :
-Commence par convertir le fichier depuis l’hexadécimal vers un format binaire exploitable.
+Tout part d'un piège : un fichier data.txt, qui n’est rien d’autre qu’un hexdump, un déguisement parfait.\
+Ta première tâche : le reconstruire en version binaire réelle. Commence par convertir le fichier depuis l’hexadécimal vers un format binaire exploitable.\
+Ensuite, le vrai combat commence.\
+Chaque couche de compression est un verrou : gzip, bzip2, tar… Tu devras les casser une à une, sans jamais faiblir.\
 
 ℹ️ :
-Une superbe commande te sera utile pour détecter les formats successifs (gzip, bzip2, tar…). Décompresse-les un à un.
+Une superbe commande te sera utile pour détecter les formats successifs (gzip, bzip2, tar…). Décompresse-les un à un.\
+Et souviens-toi : n’agis jamais sans précaution. \
+Crée ton bunker temporaire avec mktemp -d, planque-y ta copie, renomme, respire… puis fonce.
+Les commandes grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd, mkdir, cp, mv, file taideront à chaque étape.\
+Et si tu es bloqué, n’hésite pas à faire un tour sur le forum du CTF.\
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : ouvre les 👀 et raverse les couches jusqu’à la vérité. Le mot de passe t’attend.
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

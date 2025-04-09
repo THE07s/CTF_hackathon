@@ -25,18 +25,29 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Décoder le contenu d’un fichier contenant le mot de passe du niveau suivant.
+Objectif:
+Un fichier codé t’attend. Il contient le mot de passe du prochain niveau, soigneusement dissimulé dans le fichier data.txt et sous une forme que seuls les initiés sauront déchiffrer…\
+À toi de percer ce voile et de révéler le message caché.\
+Prêt pour une nouvelle aventure ? Alors, en avant !
+
 
 Pour t'aider :
-Le mot de passe est encodé, un format courant de transmission de données.
+Ce n’est pas du charabia au hasard : le mot de passe est encodé dans un format très utilisé pour transmettre des données. \
+Autrement dit : il y a une logique, une structure… et une faille.\
+Comment la trouver ? C’est simple : il suffit de se pencher sur le fichier et de l’examiner de plus près.\
+Commence par identifier le type d’encodage. Puis, avec la bonne commande, transforme ces symboles en texte clair. \
+Le mot de passe apparaîtra alors sous tes yeux comme une révélation.
 
 ℹ️ :
-Trouver l'encodage et la commande pour convertir le fichier en texte clair.
+Le fichier data.txt contient des données encodées en base64.\
+À toi de les décoder pour libérer le mot magique.\
+Les commandes utiles pour ce niveau sont: grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : tu n’as qu’un obstacle entre toi et la suite de ton aventure : une énigme chiffrée. \
+Sois précis·e, rapide, et surtout…garde les yeux grands ouverts 👀.
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

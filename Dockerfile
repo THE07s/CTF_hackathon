@@ -27,6 +27,8 @@ RUN apt-get update && \
         lsof \
         procps \
         build-essential \
+        curl \
+        wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Installer les dépendances Python

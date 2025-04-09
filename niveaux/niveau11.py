@@ -25,18 +25,26 @@ def main():
     os.system(f"chmod 640 '{chemin_fichier}'")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Retrouver le mot de passe à partir d’une version chiffrée présente dans un fichier.
+Objectif: 
+Tu dois décrypter et récupérer un message codé.
+C'est un mot de passe, prisonnier d’un vieux sortilège numérique : le ROT13 qui transforme les mots…tout en les gardant à portée d’œil.
+À toi de briser le charme et de révéler ce qui se cache dessous.\
+Dévoile le message et entre dans le niveau suivant en conquérant.
 
 Pour t'aider :
-Le chiffrement utilisé est un simple décalage de 13 lettres dans l’alphabet : le ROT13.
+Le fichier data.txt contient le mot de passe, mais il est déguisé.
+Chaque lettre, qu’elle soit minuscule ou majuscule, a été décalée de 13 positions dans l’alphabet.
+Ce n’est pas complexe. Mais il faut savoir où appuyer pour que tout s’aligne.
 
 ℹ️ :
-Trouve la commande 😈.
+Une seule commande peut tout faire basculer. Une commande simple… mais puissante.
+Trouve-la, et le vrai texte se révélera à toi.\
+Aide toi des commandes suivantes: grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : ouvre les 👀 et retourne les lettres!
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

@@ -1,9 +1,10 @@
-# Script d'initialisation pour l'utilisateur niveau19
+# Script d'initialisation pour l'utilisateur niveau21
 
 import os
 import CTF_lib
 import niveau20
-import textwrap
+import string
+import random
 
 def main():
     NIVEAU = 19
@@ -13,50 +14,56 @@ def main():
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
 
-    dossier = f"/home/niveau{NIVEAU}"
-    chemin_script = os.path.join(dossier, "bandit20-do")
+    # Chemins utiles
+    script_path = f"/usr/bin/cronjob_niveau{SUIVANT}.sh"
+    cron_path = f"/etc/cron.d/cronjob_niveau{SUIVANT}"
+    tmp_file = f"/tmp/{generer_nom_temp()}"
 
-    # Simuler un binaire : on fait un script bash avec setuid (chmod 4750)
-    with open(chemin_script, "w") as f:
-        f.write(textwrap.dedent(f"""\
-            #!/bin/bash
-            if [ $# -eq 0 ]; then
-                echo "Usage: ./bandit20-do <commande>"
-                exit 1
-            fi
-            CMD="$@"
-            su -c "$CMD" - niveau{SUIVANT}
-        """))
+    # Script bash exécuté par le cron
+    with open(script_path, "w") as f:
+        f.write(f"""#!/bin/bash
+echo '{mdp_suivant}' > {tmp_file}
+chmod 644 {tmp_file}
+""")
+    os.system(f"chown root:root {script_path}")
+    os.system("chmod 755 " + script_path)
 
-    os.system(f"chown root:niveau{NIVEAU} '{chemin_script}'")
-    os.system(f"chmod 4750 '{chemin_script}'")  # SUID sur script bash
+    # Fichier de cron (exécution chaque minute)
+    with open(cron_path, "w") as f:
+        f.write(f"""* * * * * niveau{SUIVANT} {script_path} &> /dev/null
+""")
+    os.system(f"chown root:root {cron_path}")
+    os.system("chmod 644 " + cron_path)
 
     # Fichier readme
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
-Utiliser un programme spécial pour exécuter une commande en tant que l’utilisateur du niveau suivant.
+Trouver un mot de passe laissé temporairement dans un fichier, généré automatiquement par une tâche planifiée.
 
 Pour t'aider :
-Trouve le programme et exécute le en tant que l’utilisateur niveau{SUIVANT}.
+Un cron job s'exécute toutes les minutes pour l’utilisateur niveau{SUIVANT}.
 
 ℹ️ :
-Trouve le mot de passe du niveau suivant, les mot de passe sont stokés dans /etc/...
+Cherche dans le bon dossier et vois ce que contient le script lancé
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """
-    chemin_readme = os.path.join(dossier, "readme")
+    chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:
         f.write(contenu_readme)
 
-    os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} '{chemin_readme}'")
-    os.system(f"chmod 640 '{chemin_readme}'")
+    os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} {chemin_readme}")
+    os.system(f"chmod 640 {chemin_readme}")
 
     # Restreint le home
     CTF_lib.dossier_home_lecture(NIVEAU)
 
-    # Lancer le niveau suivant
+    # Lancer niveau suivant
     niveau20.main()
+
+def generer_nom_temp():
+    return 'tmp.'.join(random.choices(string.ascii_letters + string.digits, k=10))
 
 if __name__ == '__main__':
     main()

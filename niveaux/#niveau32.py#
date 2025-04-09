@@ -2,16 +2,16 @@
 
 import os
 import CTF_lib
-import niveau32
+import niveau26
 
 def main():
-    NIVEAU = 31
-    SUIVANT = 32
+    NIVEAU = 25
+    SUIVANT = 26
 
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
 
-    script_path = "/usr/bin/niv32backup.sh"
+    script_path = f"/usr/bin/niveau{NIVEAU}backup.sh"
     output_path = f"/home/niveau{NIVEAU}/leak.txt"
 
     # Script vulnérable simulant une race condition
@@ -25,7 +25,7 @@ fi
     os.system(f"chown root:root {script_path}")
 
     # Cron : exécute toutes les minutes
-    cron_path = "/etc/cron.d/cronjob_niv32backup"
+    cron_path = f"/etc/cron.d/cronjob_niveau{NIVEAU}backup"
     with open(cron_path, "w") as f:
         f.write(f"""* * * * * root {script_path} &> /dev/null
 """)
@@ -56,7 +56,7 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     CTF_lib.dossier_home_lecture(NIVEAU)
 
     # Lancer niveau suivant
-    niveau32.main()
+    niveau26.main()
 
 if __name__ == '__main__':
     main()

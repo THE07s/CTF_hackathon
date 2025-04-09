@@ -1,51 +1,66 @@
-# Script d'initialisation pour l'utilisateur niveau21
+# Script d'initialisation pour l'utilisateur niveau24
 
 import os
+import socket
+import threading
+import random
 import CTF_lib
 import niveau22
-import string
-import random
 
 def main():
     NIVEAU = 21
     SUIVANT = 22
+    PORT = 30002
+    mdp_attendu = CTF_lib.get_mdp_hash(NIVEAU)
+
+    # Génération du bon code PIN
+    code_correct = f"{random.randint(0, 9999):04d}"
 
     # Mot de passe du niveau suivant
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
-    CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
+    chemin_pass_suivant = f"/etc/niveau_mdps/niveau{SUIVANT}"
+    with open(chemin_pass_suivant, "w") as f:
+        f.write(mdp_suivant + "\n")
+    os.system(f"chmod 640 '{chemin_pass_suivant}'")
 
-    # Chemins utiles
-    script_path = "/usr/bin/cronjob_bandit22.sh"
-    cron_path = "/etc/cron.d/cronjob_bandit22"
-    tmp_file = f"/tmp/{generer_nom_temp()}"
+    # Serveur bruteforce
+    def server():
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(('0.0.0.0', PORT))
+            s.listen()
+            while True:
+                conn, _ = s.accept()
+                with conn:
+                    try:
+                        data = conn.recv(1024).decode().strip()
+                        if not data:
+                            continue
+                        parts = data.split(" ")
+                        if len(parts) != 2:
+                            conn.sendall(b"Invalid format\n")
+                            continue
+                        motdepasse, code = parts
+                        if motdepasse == mdp_attendu and code == code_correct:
+                            conn.sendall(mdp_suivant.encode() + b"\n")
+                        else:
+                            conn.sendall(b"Wrong\n")
+                    except Exception:
+                        continue
 
-    # Script bash exécuté par le cron
-    with open(script_path, "w") as f:
-        f.write(f"""#!/bin/bash
-chmod 644 {tmp_file}
-echo '{mdp_suivant}' > {tmp_file}
-""")
-    os.system(f"chown root:root {script_path}")
-    os.system("chmod 755 " + script_path)
-
-    # Fichier de cron (exécution chaque minute)
-    with open(cron_path, "w") as f:
-        f.write(f"""* * * * * niveau{SUIVANT} {script_path} &> /dev/null
-""")
-    os.system(f"chown root:root {cron_path}")
-    os.system("chmod 644 " + cron_path)
+    threading.Thread(target=server, daemon=True).start()
 
     # Fichier readme
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
-Trouver un mot de passe laissé temporairement dans un fichier, généré automatiquement par une tâche planifiée.
+Contacter un serveur TCP local, lui envoyer le bon mot de passe et un code PIN à 4 chiffres.
 
 Pour t'aider :
-Un cron job s'exécute toutes les minutes pour l’utilisateur niveau{SUIVANT}.
+Le serveur écoute sur le port {PORT} et attend une ligne contenant :
+<mot_de_passe> <PIN>
 
 ℹ️ :
-Cherche dans le bon dossier et vois ce que contient le script lancé
+Essaie d’écrire un script bash ou python.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """
@@ -56,14 +71,11 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} {chemin_readme}")
     os.system(f"chmod 640 {chemin_readme}")
 
-    # Restreint le home
+    # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
 
     # Lancer niveau suivant
     niveau22.main()
-
-def generer_nom_temp():
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=32))
 
 if __name__ == '__main__':
     main()

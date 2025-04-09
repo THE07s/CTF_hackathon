@@ -1,66 +1,62 @@
-# Script d'initialisation pour l'utilisateur niveau22
+# Script d'initialisation pour l'utilisateur niveau26
 
 import os
+import random
+import threading
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import CTF_lib
 import niveau23
-import hashlib
 
 def main():
     NIVEAU = 22
     SUIVANT = 23
-
+    PORT = 8080
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
     CTF_lib.ecrire_fichier_mdp(SUIVANT, mdp_suivant)
 
-    # Hash md5 de la string "I am user niveau23"
-    phrase = f"I am user niveau{SUIVANT}"
-    hash_target = hashlib.md5(phrase.encode()).hexdigest()
-    chemin_tmp = f"/tmp/{hash_target}"
+    dossier_http = f"/tmp/http_niveau{NIVEAU}"
+    os.makedirs(dossier_http, exist_ok=True)
 
-    # Script cron
-    script_path = "/usr/bin/cronjob_bandit23.sh"
-    with open(script_path, "w") as f:
-        f.write(f"""#!/bin/bash
+    # Nom du fichier caché
+    nom_fichier = random.choice(["hidden.txt", "motdepasse.html", "index.html.bak"])
+    chemin_fichier = os.path.join(dossier_http, nom_fichier)
 
-myname=$(whoami)
-mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+    with open(chemin_fichier, "w") as f:
+        f.write(mdp_suivant + "\n")
 
-echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
-cat /etc/bandit_pass/$myname > /tmp/$mytarget
-chmod 644 /tmp/$mytarget
-""")
-    os.system(f"chmod 755 {script_path}")
-    os.system(f"chown root:root {script_path}")
+    class CustomHandler(SimpleHTTPRequestHandler):
+        def log_message(self, format, *args):
+            pass  # silence logs
 
-    # Cron
-    cron_path = "/etc/cron.d/cronjob_bandit23"
-    with open(cron_path, "w") as f:
-        f.write(f"""* * * * * niveau{SUIVANT} {script_path} &> /dev/null
-""")
-    os.system(f"chmod 644 {cron_path}")
-    os.system(f"chown root:root {cron_path}")
+    def lancer_http():
+        os.chdir(dossier_http)
+        httpd = HTTPServer(('0.0.0.0', PORT), CustomHandler)
+        httpd.serve_forever()
+
+    threading.Thread(target=lancer_http, daemon=True).start()
 
     # Fichier readme
     contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
 L'objectif de ce niveau :
-Retrouver un fichier temporaire généré par un cron job à partir d’un hash md5.
+Trouver un fichier caché sur un serveur HTTP local pour obtenir le mot de passe du niveau suivant.
 
 Pour t'aider :
-Le script cron utilise 'whoami' 
+Un serveur HTTP est actif sur le port {PORT}, mais ne liste pas ses fichiers. Tu dois deviner l’URL correcte.
 
 ℹ️ :
-Trouve la bonne commande
+Trouve la bonne commande.
 
 Bonne chance, et n’oublie pas : ouvre les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:
         f.write(contenu_readme)
-    os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} {chemin_readme}")
-    os.system(f"chmod 640 {chemin_readme}")
 
-    # Restreint le home
+    os.system(f"chown niveau{NIVEAU}:niveau{NIVEAU} '{chemin_readme}'")
+    os.system(f"chmod 640 '{chemin_readme}'")
+
+    # Restreindre le home
     CTF_lib.dossier_home_lecture(NIVEAU)
 
     # Lancer niveau suivant

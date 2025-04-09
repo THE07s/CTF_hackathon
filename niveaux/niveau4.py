@@ -35,18 +35,22 @@ def main():
     os.system(f"chmod 700 {dossier_jeSuisLa}")
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""\
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Retrouver le bon fichier dans le bon dossier .Un seul contient un mot de passe lisible.
+Objectif:
+Retrouve le bon fichier dans le bon dossier. Un seul contient un mot de passe lisible.
 
 Pour t'aider :
-Certains fichiers ne sont pas lisibles directement, ou contiennent du contenu illisible.
+Certains fichiers semblent illisibles ou contiennent des données étranges… \
+Ne te laisse pas piéger. Le mot de passe est caché dans le seul fichier lisible du dossier inhere. \
 
 ℹ️ :
-Détecter le type de contenu d’un fichier. Les fichiers texte sont particuliers.
+Essaie d’identifier le type de contenu de chaque fichier.\
+Mais attention...Les fichiers texte ont quelque chose d'assez inabituel…\
+Si ton terminal fait des siennes, pense à utiliser la commande magique : reset.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : ouvre grands les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

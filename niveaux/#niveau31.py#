@@ -2,14 +2,14 @@
 
 import os
 import CTF_lib
-import niveau31
+import niveau26
 import tempfile
 import time
 import threading
 
 def main():
-    NIVEAU = 30
-    SUIVANT = 31
+    NIVEAU = 25
+    SUIVANT = 26
 
     mdp_suivant = CTF_lib.get_mdp_hash(SUIVANT)
 
@@ -47,7 +47,7 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     CTF_lib.dossier_home_lecture(NIVEAU)
 
     # Lancer niveau suivant
-    niveau31.main()
+    niveau26.main()
 
 if __name__ == '__main__':
     main()
