@@ -1,7 +1,7 @@
 FROM arm64v8/debian:bullseye-slim
 
 # Définir des arguments de build pour plus de flexibilité
-ARG ROOT_PASSWORD="root"
+ARG ROOT_PASSWORD="Haho4231@"
 
 # Installer les paquets requis et nettoyer
 RUN apt-get update && \
