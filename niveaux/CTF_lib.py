@@ -27,7 +27,7 @@ def get_mdp_hash(niv: int) -> str:
     '''Retourne une chaîne de hachage MD5 générée à partir d'une graine prédéfinie et du numéro de niveau.
        Ainsi, pour un même niveau, le mot de passe sera toujours identique.
     '''
-    seed = "Je suis le meilleur admin de CTF !"
+    seed = "Aujourd'hui, jour de hackathon, je vais m'amuser à les faire tous souffrir."
     data = seed + str(niv)
     return hashlib.md5(data.encode('utf-8')).hexdigest()
 

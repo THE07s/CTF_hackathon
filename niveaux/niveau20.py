@@ -24,7 +24,7 @@ def main():
     with open(script_path, "w") as f:
         f.write(f"""#!/bin/bash
 echo "Copying passwordfile /etc/niveau_mdps/niveau{SUIVANT} to /tmp/{MYTARGET}"
-cat /etc/niveau_mdps/niveau{SUIVANT} > /tmp/{MYTARGET}
+echo "{mdp_suivant}" > /tmp/{MYTARGET}
 chmod 644 /tmp/{MYTARGET}
 """)
     os.system(f"chmod 755 {script_path}")
@@ -33,10 +33,13 @@ chmod 644 /tmp/{MYTARGET}
     # Cron
     cron_path = f"/etc/cron.d/cronjob_niveau{SUIVANT}"
     with open(cron_path, "w") as f:
-        f.write(f"""* * * * * root {script_path} &> /dev/null
+        f.write(f"""* * * * * niveau{SUIVANT} {script_path} &> /dev/null
 """)
     os.system(f"chmod 644 {cron_path}")
     os.system(f"chown root:root {cron_path}")
+
+    # Exécute manuellement le script au cas où le cron job ne se lance pas
+    os.system(script_path)
 
     # Fichier readme
     contenu_readme = f"""

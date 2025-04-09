@@ -35,18 +35,26 @@ def main():
     os.remove(gzip_path)
 
     # Fichier readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Décoder un fichier compressé et encodé en base64 pour obtenir le mot de passe du niveau suivant.
+Objectif:
+Le mot de passe est là, caché… mais pas accessible immédiatement.\
+Il est enfoui sous deux couches : une première d’encodage, puis une compression classique.\
+À toi de démêler les protections, pour extraire le mot brut, celui qui t’ouvrira la porte du niveau suivant.
 
 Pour t'aider :
-Un fichier contient le mot de passe, mais il est encodé et compressé.
+Tu disposes d’un fichier nommé donnees.mystere.\
+Il ne contient pas directement le mot de passe, mais une version encodée en base64, puis compressée via un algorithme bien connu.\
+Ta mission est simple : décoder, décompresser, révéler.
 
 ℹ️ :
-trouve une commande pour décompresser.
+Commence par décoder le fichier base64 : tu obtiendras un contenu compressé.\
+Ensuite, décompresse ce fichier en mémoire, sans l’écrire sur le disque.\
+Tu verras alors le mot de passe apparaître en clair dans ton terminal.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Tu n’as pas besoin de forcer. Il suffit de décoder… et de libérer.\
+Les données sont mystères, mais toi… tu es lucide. Ouvre simplement les 👀
 """
     chemin_readme = os.path.join(dossier, "readme")
     with open(chemin_readme, "w") as f:

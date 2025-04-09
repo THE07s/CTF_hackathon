@@ -25,18 +25,27 @@ def main():
     os.system(f"chmod 640 {chemin_fichier}")  # -rw-r-----
 
     # Readme
-    contenu_readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    contenu_readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Lire un fichier dont l’accès est limité à un groupe UNIX spécifique.
+Objectif:
+Un fichier t’attend… mais à première vue, il n’est pas à toi. Pas de panique : ici, ce n’est pas une question de propriété, mais d’appartenance.\
+Tu n’es pas le propriétaire du fichier, mais tu fais partie d’un groupe bien précis… et ce groupe a les clés.\
+Ton but? Lire ce fichier.
 
 Pour t'aider :
-Un fichier n’appartient pas à toi, mais tu fais partie du groupe autorisé à le lire.
+Le fichier acces_groupe.txt est protégé par les droits UNIX classiques : propriétaire, groupe, autres.\
+Tu ne peux pas l’ouvrir comme ça, sauf que… tu fais partie du groupe qui a le droit de le lire.\
+Il te suffit de le comprendre, et de l’assumer.
 
 ℹ️ :
-Trouve les commande affectant les groupes : 
+Observe bien les droits du fichier.\
+Regarde à qui il appartient, et surtout quel groupe a les droits de lecture.\
+Vérifie que tu appartiens à ce groupe, et tu pourras lire le fichier en toute légitimité.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Tu n’as pas besoin d’être le propriétaire.\
+Tu fais partie de la famille.\
+Regarde les droits. Regarde ton groupe. Et ouvre les 👀
 """
     chemin_readme = os.path.join(dossier, "readme")
     with open(chemin_readme, "w") as f:

@@ -54,7 +54,9 @@ Pense à des noms de fichiers souvent oubliés ou sauvegardés par erreur…(par
 Une commande te permet d’envoyer une requête HTTP silencieuse, et de vérifier si le fichier existe ou non\
 Teste plusieurs noms jusqu’à tomber sur le bon : quand le bon fichier sera trouvé, le serveur te répondra.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : c’est un test de flair.\
+Devine juste, vise bien, et le serveur t’ouvrira la porte.\
+Tape à la bonne adresse… et n’oublie pas d’ouvrir les 👀
 """
     chemin_readme = f"/home/niveau{NIVEAU}/readme"
     with open(chemin_readme, "w") as f:

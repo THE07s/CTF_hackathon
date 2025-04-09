@@ -22,18 +22,29 @@ def main():
     os.system(f"chmod 640 {log_path}")
 
     # Fichier readme
-    readme = f"""Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
+    readme = f"""
+Bienvenue dans le niveau {NIVEAU} du CTF hackathon.
 
-L'objectif de ce niveau :
-Analyser les logs système pour retrouver un mot de passe écrit accidentellement.
+Objectif:
+Le mot de passe du niveau suivant n’a pas été protégé…
+Il a été inscrit par erreur dans un fichier de log système, comme une trace oubliée d’un passage furtif. \
+À toi de la retrouver.\
+Tu vas devoir jouer le rôle du cyber-enquêteur : fouiller les journaux, analyser, extraire… et révéler ce qui aurait dû rester caché.
 
 Pour t'aider :
-Un script de journalisation loggue toutes les connexions utilisateur quelque-part.
+Un script de journalisation (log) enregistre chaque connexion utilisateur. \
+Quelqu’un a laissé échapper un mot de passe.\
+Ce mot figure dans une ligne liée à l’utilisateur niveau26.\
+Mais le log ne se lit pas comme un livre : tu devras filtrer, découper, nettoyer pour extraire le mot exact.
 
 ℹ️ :
-Regarde dans ce fichier pour y trouver une ligne suspecte…
+Regarde dans le bon fichier de logs système.\
+Cherche les lignes associées à niveau26.\
+Une fois la ligne trouvée, extrais précisément la partie contenant le mot de passe.\
+Il peut être caché derrière un délimiteur, ou entouré d’espaces : fais le ménage.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Les logs ne mentent jamais… mais ils ne crient pas non plus.\
+Écoute bien, lis entre les lignes, et ouvre les 👀
 """
     readme_path = f"/home/niveau{NIVEAU}/readme"
     with open(readme_path, "w") as f:
