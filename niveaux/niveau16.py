@@ -48,12 +48,18 @@ Ton rôle ? Trouver l’intrus. L’élément nouveau. Le mot interdit qui s’e
 Ce mot unique, c’est le mot de passe du prochain niveau.
 
 Pour t'aider :
-2 fichiers sont presque identiques, à une chose prêt.
+Tu disposes de deux fichiers : l’un est l’ancienne version, l’autre la nouvelle.\
+Ils se ressemblent presque à la perfection. Mais une seule ligne a été ajoutée.\
+Une seule différence. C’est elle que tu dois repérer. Elle seule t’ouvrira la voie.
 
 ℹ️ :
-Utilise une commande pour repérer la différence.
+Oublie la recherche visuelle. Ce serait trop long, trop risqué.\
+Tu dois comparer les deux fichiers, ligne par ligne, avec précision chirurgicale. \
+Cherche ce qui existe dans le nouveau fichier mais pas dans l’ancien.\
+Tu verras : la différence est là, tapie dans l’ombre… mais visible à celui ou celle qui sait observer avec méthode.
 
-Bonne chance, et n’oublie pas : ouvre les 👀
+Bonne chance, et n’oublie pas : Une seule ligne. Un seul mot. Et un nouveau niveau s’ouvre.\
+Garde ton sang-froid, et ouvre grand les 👀🧠🕶️📜
 """
     chemin_readme = os.path.join(dossier, "readme")
     with open(chemin_readme, "w") as f:
