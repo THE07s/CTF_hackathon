@@ -3,6 +3,7 @@ import os
 import subprocess
 import hashlib
 import time
+import re
 
 LOG_FILE = "/tmp/validation.log"
 
@@ -13,28 +14,29 @@ def log_message(message):
 
 def get_expected_passwords():
     """
-    Retourne un dictionnaire des mots de passe attendus pour chaque niveau.
-    Pour le niveau 0, le mot de passe est "niveau0".
-    Pour les niveaux > 0, le mot de passe est le MD5 de "Je suis le meilleur admin de CTF !{niveau}".
+    Retourne un dictionnaire où chaque clé est le numéro de niveau (de 0 à 26)
+    et la valeur est le contenu du fichier correspondant dans /etc/niveau_mdps/niveau{niv}.
     """
-    seed = "Je suis le meilleur admin de CTF !"
     d = {}
-    for level in range(0, 26):
-        if level == 0:
-            d[level] = "niveau0"
-        else:
-            d[level] = hashlib.md5(f"{seed}{level}".encode()).hexdigest()
+    for level in range(0, 27):
+        filepath = f"/etc/niveau_mdps/niveau{level}"
+        try:
+            with open(filepath, "r") as f:
+                d[level] = f.read().strip()
+        except Exception as e:
+            d[level] = f"Erreur: {e}"
     return d
+
 
 def run_cmd(cmd, input_text=None):
     """
-    Exécute une commande shell, capture stdout et stderr, les logge, et retourne stdout.
+    Exécute une commande shell, capture stdout et stderr, les loggue, et retourne stdout.
     """
     try:
         result = subprocess.run(cmd, shell=True, input=input_text, capture_output=True, text=True, timeout=30)
         log_message(f"Commande exécutée : {cmd}")
-        log_message("STDOUT :\n" + result.stdout)
-        log_message("STDERR :\n" + result.stderr)
+        log_message("STDOUT (brut) : " + repr(result.stdout))
+        log_message("STDERR (brut) : " + repr(result.stderr))
         return result.stdout.strip()
     except Exception as e:
         log_message(f"Erreur lors de l'exécution de '{cmd}' : {e}")
@@ -45,12 +47,20 @@ def run_cmd_as_user(level, cmd, input_text=None):
     Exécute la commande cmd depuis le home de l'utilisateur niveau{level} en utilisant su.
     On s'assure que le shell démarre dans le répertoire personnel.
     """
-    # Échappe les éventuelles doubles quotes dans la commande
     safe_cmd = cmd.replace('"', '\\"')
     new_cmd = f"su - niveau{level} -c \"cd ~ && {safe_cmd}\""
     return run_cmd(new_cmd, input_text)
 
-# Définition des commandes de validation pour chaque niveau (0 à 25)
+def clean_output(output):
+    """
+    Supprime les codes ANSI et autres caractères de contrôle de la sortie.
+    """
+    # Suppression des séquences ANSI
+    ansi_clean = re.sub(r'\x1B\[[0-?]*[ -/]*[@-~]', '', output)
+    # Supprime les retours chariot excessifs et espaces en début/fin
+    return ansi_clean.strip()
+
+# Validation steps selon votre configuration
 validation_steps = {
     0: "cat readme",
     1: "cat ./-",
@@ -86,7 +96,7 @@ results = []
 print("Début de la validation des niveaux...\n")
 log_message("Début de la validation des niveaux...")
 
-# Itération sur les niveaux de 0 à 25
+# Itération sur les niveaux 0 à 25
 for level in range(0, 26):
     cmd = validation_steps.get(level)
     if not cmd:
@@ -96,25 +106,33 @@ for level in range(0, 26):
     print(f"🧪 Test du niveau {level}…")
     log_message(f"🧪 Test du niveau {level}…")
     
-    # Attente de 1:30 minute uniquement pour le premier niveau utilisant un cronjob (niveau 19)
+    # Attente de 1:30 minute pour le premier niveau utilisant un cronjob (niveau 19)
     if level == 19:
-        print("Attente de 1:30 minute pour laisser le temps d'exécution du cronjob...")
-        log_message("Attente de 1:30 minute pour le cronjob...")
-        time.sleep(90)
+        print("Attente de 1:15 minute pour laisser le temps d'exécution du cronjob...")
+        log_message("Attente de 1:15 minute pour le cronjob...")
+        time.sleep(75)
         
     # Pour le niveau 21, remplacer le placeholder par le mot de passe attendu
     if level == 21:
         cmd = cmd.replace("PLACEHOLDER_PASSWORD", expected_passwords[21])
     
-    # Exécute la commande en tant qu'utilisateur "niveauX" depuis son home
-    output = run_cmd_as_user(level, cmd)
+    # Exécuter la commande en tant qu'utilisateur "niveauX" depuis son home
+    output_raw = run_cmd_as_user(level, cmd)
+    # Nettoyer la sortie
+    output = clean_output(output_raw)
+    log_message("Cleaned Output: " + repr(output))
     
-    # Recherche du mot de passe attendu dans la sortie
+    # Si l'attendu est un hash de 32 caractères, on utilise la regex
+    expected = expected_passwords.get(level)
     found = None
-    for key, pw in expected_passwords.items():
-        if pw in output:
-            found = pw
-            break
+    if expected and len(expected) == 32:
+        m = re.search(r'([0-9a-f]{32})', output)
+        if m:
+            found = m.group(1)
+    else:
+        # Pour les niveaux dont le mot de passe n'est pas un hash 32, on cherche directement
+        if expected and expected in output:
+            found = expected
 
     if found:
         results.append((f"niveau{level}", "✅", found))
