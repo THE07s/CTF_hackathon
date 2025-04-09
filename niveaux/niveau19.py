@@ -5,6 +5,7 @@ import CTF_lib
 import niveau20
 import string
 import random
+import hashlib
 
 def main():
     NIVEAU = 19
@@ -63,7 +64,7 @@ Bonne chance, et n’oublie pas : ouvre les 👀
     niveau20.main()
 
 def generer_nom_temp():
-    return 'tmp.'.join(random.choices(string.ascii_letters + string.digits, k=10))
+    return hashlib.md5("I am user niveau20".encode()).hexdigest()
 
 if __name__ == '__main__':
     main()

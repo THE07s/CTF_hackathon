@@ -47,9 +47,9 @@ def ecrire_fichier_mdp(niv: int, mdp: str):
     '''Écrit le mot de passe dans /etc/niveau_mdps/niveauX et restreint les permissions'''
     os.system("mkdir -p /etc/niveau_mdps")
     os.system(f"touch /etc/niveau_mdps/niveau{niv}")
-    os.system(f"echo {mdp} >> /etc/niveau_mdps/niveau{niv}")
+    os.system(f"echo {mdp} > /etc/niveau_mdps/niveau{niv}")
     os.system(f"chown niveau{niv}:niveau{niv} /etc/niveau_mdps/niveau{niv}")
-    os.system(f"chmod 400 /etc/niveau_mdps/niveau{niv}")
+    os.system(f"chmod 640 /etc/niveau_mdps/niveau{niv}")
 
 
 def config_bash(niv: int):

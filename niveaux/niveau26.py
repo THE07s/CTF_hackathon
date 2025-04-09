@@ -43,5 +43,8 @@ Merci d’avoir joué ❤️
         except Exception as e:
             print(f"Erreur lors de la lecture du niveau {niv} : {e}")
 
+    # Exécute le script de validation des niveaux
+    os.system("python3 /app/valide_niveaux.py")
+
 if __name__ == '__main__':
     main()
