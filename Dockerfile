@@ -54,7 +54,6 @@ EXPOSE 30000
 EXPOSE 30001
 EXPOSE 31000-32000
 
-
 # Ajouter les personnalisations
 RUN : > /etc/motd
 COPY ./scripts_bash/banners.sh /etc/profile.d/
@@ -75,5 +74,5 @@ WORKDIR /app
 
 ENV LANG=C.UTF-8
 
-# Spécifier la commande par défaut
-CMD ["sh", "-c", "python3 init.py & /usr/sbin/sshd -D"]
+# Spécifier la commande par défaut en affichant la commande SSH pour se connecter au jeu
+CMD ["sh", "-c", "echo 'Pour vous connecter en SSH au jeu, utilisez la commande suivante:' && echo \"ssh niveau0@$(hostname -I | awk '{print $1}') -p 2222\" && python3 init.py & /usr/sbin/sshd -D"]
