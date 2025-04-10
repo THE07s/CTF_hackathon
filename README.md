@@ -1,7 +1,7 @@
 # 🧩 CTF hackathon — Défi Linux Conteneurisé
 
 CTF hackathon est un clone francisé et conteneurisé du wargame **Bandit** d'OverTheWire.  
-Conçu pour fonctionner sur **Raspberry Pi** (et tout environnement Docker ARM64v8 ou x86_64), il permet d'apprendre la ligne de commande, les droits Unix, le réseau, et la cybersécurité à travers **34 niveaux progressifs**.
+Conçu pour fonctionner sur **Raspberry Pi**, il permet d'apprendre la ligne de commande, les droits Unix, le réseau, et la cybersécurité à travers **34 niveaux progressifs**.
 
 ---
 
@@ -56,7 +56,7 @@ docker run -it \
 
 ```bash
 ssh niveau0@localhost -p 2222
-mot de passe : bandit0
+mot de passe : niveau0
 ```
 
 > Un fichier `readme` est présent dans le répertoire de chaque joueur (`/home/niveauX/`) pour expliquer l’objectif du niveau en cours.  
